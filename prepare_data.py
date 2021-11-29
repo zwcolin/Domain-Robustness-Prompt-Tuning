@@ -1,4 +1,3 @@
-from transformers import T5Tokenizer
 from os.path import exists
 import torch
 import torch.nn as nn
@@ -25,12 +24,12 @@ def convert_to_features(example_batch):
 
     return encodings
 
-def create_or_load():
+def create_or_load(tokenizer):
     if exists('data/train_data.pt') and xists('data/valid_data.pt'):
         train_dataset = torch.load('train_data.pt')
         valid_dataset = torch.load('valid_data.pt')
     else:
-        tokenizer = T5Tokenizer.from_pretrained("t5-base")
+        tokenizer = tokenizer
 
         # load train and validation split of squad
         train_dataset  = nlp.load_dataset('squad', split=nlp.Split.TRAIN)
