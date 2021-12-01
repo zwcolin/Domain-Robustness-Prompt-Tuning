@@ -146,6 +146,8 @@ class T5PromptTuningMixin:
         # where greedy search only requires encoder outputs and decoder_input ids and the shape needs to match
         if attention_mask is not None:
             attention_mask = self._extend_attention_mask(attention_mask).to(self.device)
+            if decoder_attention_mask is not None:
+                decoder_attention_mask = self._extend_attention_mask(decoder_attention_mask).to(self.device)
         
         if to_encoder_only:
             return self.encoder(inputs_embeds=inputs_embeds, return_dict=True)
@@ -165,6 +167,7 @@ class T5PromptTuningMixin:
             attention_mask=attention_mask,
             inputs_embeds=inputs_embeds,
             labels=labels,
+            decoder_attention_mask=decoder_attention_mask,
             use_cache=use_cache,
             return_dict=return_dict,
             encoder_outputs=encoder_outputs,

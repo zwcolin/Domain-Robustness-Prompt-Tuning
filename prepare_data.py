@@ -2,8 +2,10 @@ from os.path import exists
 import torch
 import torch.nn as nn
 import nlp
+from transformers import T5Tokenizer
 
 
+tokenizer=T5Tokenizer.from_pretrained("t5-small")
 # process the examples in input and target text format and the eos token at the end 
 def add_eos_to_examples(example):
     example['input_text'] = 'question: %s  context: %s </s>' % (example['question'], example['context'])
@@ -12,8 +14,8 @@ def add_eos_to_examples(example):
 
 # tokenize the examples
 def convert_to_features(example_batch):
-    input_encodings = tokenizer.batch_encode_plus(example_batch['input_text'], pad_to_max_length=True, max_length=512)
-    target_encodings = tokenizer.batch_encode_plus(example_batch['target_text'], pad_to_max_length=True, max_length=16)
+    input_encodings = tokenizer.batch_encode_plus(example_batch['input_text'], pad_to_max_length=True, max_length=512, truncation=True)
+    target_encodings = tokenizer.batch_encode_plus(example_batch['target_text'], pad_to_max_length=True, max_length=16, truncation=True)
 
     encodings = {
         'input_ids': input_encodings['input_ids'], 
@@ -25,9 +27,9 @@ def convert_to_features(example_batch):
     return encodings
 
 def create_or_load(tokenizer):
-    if exists('data/train_data.pt') and xists('data/valid_data.pt'):
-        train_dataset = torch.load('train_data.pt')
-        valid_dataset = torch.load('valid_data.pt')
+    if exists('data/train_data.pt') and exists('data/valid_data.pt'):
+        train_dataset = torch.load('data/train_data.pt')
+        valid_dataset = torch.load('data/valid_data.pt')
     else:
         tokenizer = tokenizer
 
