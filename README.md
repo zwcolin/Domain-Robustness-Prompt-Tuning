@@ -25,6 +25,9 @@ A notebook, namely `main.ipynb`, has been provided for fast prototyping and expe
 ## Deployment
 A `Dockerfile` has been provided in the root folder to set up a docker environment. Note that this dockerfile has only been experimented at UCSD's DataHub. Use it with caution.
 
+## DSC 180A Specific Instructions
+We don't strictly follow the structure of the given suggestions, with a `test` folder and a `testdata` folder inside it. It's too rigid. Instead, all the training and test data will be store inside the `data` folder and `run.py` contains all the necessary code to build the model or to test the model for fast prototyping regarding Q1 project's nature.
+
 ## Reference
 The script is based on the following paper:
 @misc{lester2021power,
