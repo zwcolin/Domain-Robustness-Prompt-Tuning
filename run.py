@@ -121,4 +121,8 @@ if __name__ == '__main__':
     # run via:
     # python main.py data features model
     targets = sys.argv[1:]
+    if len(targets) == 1:
+    	print('Please read the README.md to learn how to run the script properly!!')
+    	print()
+    	print()
     main(targets)
