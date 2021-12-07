@@ -84,14 +84,14 @@ def main(targets):
                                                      return_dict=False,
                                                      soft_prompt_path=f'soft_prompt/soft_prompt_{model_name}_{n_tokens}.model')
         except:
-        	print('Please read the README.md to learn how to run the script properly!!')
+            print('Please read the README.md to learn how to run the script properly!!')
             model = T5PromptTuningLM.from_pretrained('t5-small', 
                                                  return_dict=False,
                                                  soft_prompt_path='soft_prompt/soft_prompt_t5-small_10.model')
             print('Specified configuration failed to load... Load default settings: model_name=t5-small, n_tokens=10')
         
     if 'test' in targets:
-    	try:
+        try:
             model_name = str(targets[1])
             n_tokens = int(targets[2])
             model = T5PromptTuningLM.from_pretrained(model_name, 
@@ -99,7 +99,7 @@ def main(targets):
                                                      soft_prompt_path=f'soft_prompt/soft_prompt_{model_name}_{n_tokens}.model')
             tokenizer = T5Tokenizer.from_pretrained(model_name)
         except:
-        	print('Please read the README.md to learn how to run the script properly!!')
+            print('Please read the README.md to learn how to run the script properly!!')
             model = T5PromptTuningLM.from_pretrained('t5-small', 
                                                  return_dict=False,
                                                  soft_prompt_path='soft_prompt/soft_prompt_t5-small_10.model')
