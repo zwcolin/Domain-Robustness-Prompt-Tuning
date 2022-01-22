@@ -108,7 +108,6 @@ class T5PromptTuningMixin:
     def save_soft_prompt(self, path: str, filename: str = "soft_prompt.model"):
         Path(path).mkdir(parents=True, exist_ok=True)
         torch.save(self.soft_prompt, os.path.join(path, filename))
-        # print(f"Saved soft prompt: {os.path.join(path, filename)}")
 
     def forward(
         self,

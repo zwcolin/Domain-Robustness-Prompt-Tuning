@@ -2,10 +2,7 @@ from os.path import exists
 import torch
 import torch.nn as nn
 import nlp
-from transformers import T5Tokenizer
 
-
-tokenizer=T5Tokenizer.from_pretrained("t5-small")
 # process the examples in input and target text format and the eos token at the end 
 def add_eos_to_examples(example):
     example['input_text'] = 'question: %s  context: %s </s>' % (example['question'], example['context'])
@@ -26,13 +23,13 @@ def convert_to_features(example_batch):
 
     return encodings
 
-def create_or_load(tokenizer):
+def create_or_load(input_tokenizer):
+    global tokenizer
+    tokenizer = input_tokenizer
     if exists('data/train_data.pt') and exists('data/valid_data.pt'):
         train_dataset = torch.load('data/train_data.pt')
         valid_dataset = torch.load('data/valid_data.pt')
     else:
-        tokenizer = tokenizer
-
         # load train and validation split of squad
         train_dataset  = nlp.load_dataset('squad', split=nlp.Split.TRAIN)
         valid_dataset = nlp.load_dataset('squad', split=nlp.Split.VALIDATION)
