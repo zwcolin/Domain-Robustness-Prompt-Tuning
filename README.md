@@ -4,11 +4,9 @@ Authors: Colin Wang, Lechuan Wang, Yutong Luo
 ## Simple Pipeline
 ### Manipulating Model in `run.py`
 #### Training
-- Usage: python run.py train model_name n_tokens batch_size
-- `model_name` specifies the pretrained T5 model, which can be `t5-small`, `t5-base`, etc
-- `n_tokens` specifies the number of tokens that serve as the soft prompt (a positive integer)
-- `batch_size` specifies the number of examples per batch during training (a positive integer)
-In this mode, the script will start fine-tuning the specified soft prompt with given configurations, and then save the soft prompt into `soft_prompt` folder
+- Simply do `bash experiment.sh` and modify any experiment meta info as well as hyperparameter as necessary. The pipeline has been built to suit single/multi GPU configurations under a single server instance.
+
+## Outdated Pipeline
 #### Testing
 - Usage: python run.py test model_name n_tokens
 - `model_name` specifies the pretrained T5 model, which can be `t5-small`, `t5-base`, etc
