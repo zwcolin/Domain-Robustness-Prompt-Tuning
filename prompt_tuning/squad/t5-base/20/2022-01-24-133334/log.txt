@@ -1,0 +1,243 @@
+Downloading and preparing dataset squad/plain_text (download: 33.51 MiB, generated: 85.75 MiB, post-processed: Unknown sizetotal: 119.27 MiB) to /tmp/xdg-cache/huggingface/datasets/squad/plain_text/1.0.0/408a8fa46a1e2805445b793f1022e743428ca739a34809fce872f0c7f17b44ab...
+Dataset squad downloaded and prepared to /tmp/xdg-cache/huggingface/datasets/squad/plain_text/1.0.0/408a8fa46a1e2805445b793f1022e743428ca739a34809fce872f0c7f17b44ab. Subsequent calls will reuse this data.
+Initializing soft prompt...
+{'loss': 0.5013, 'learning_rate': 0.0009993150684931506, 'epoch': 0.0}
+{'loss': 0.5343, 'learning_rate': 0.0009986301369863013, 'epoch': 0.01}
+{'loss': 0.4863, 'learning_rate': 0.0009979452054794521, 'epoch': 0.01}
+{'loss': 0.4946, 'learning_rate': 0.0009972602739726027, 'epoch': 0.01}
+{'loss': 0.5152, 'learning_rate': 0.0009965753424657534, 'epoch': 0.01}
+{'loss': 0.513, 'learning_rate': 0.000995890410958904, 'epoch': 0.02}
+{'loss': 0.5442, 'learning_rate': 0.0009952054794520548, 'epoch': 0.02}
+{'loss': 0.4984, 'learning_rate': 0.0009945205479452055, 'epoch': 0.02}
+{'loss': 0.4434, 'learning_rate': 0.000993835616438356, 'epoch': 0.02}
+{'loss': 0.4661, 'learning_rate': 0.0009931506849315068, 'epoch': 0.03}
+{'loss': 0.4594, 'learning_rate': 0.0009924657534246574, 'epoch': 0.03}
+{'loss': 0.5166, 'learning_rate': 0.0009917808219178082, 'epoch': 0.03}
+{'loss': 0.5437, 'learning_rate': 0.000991095890410959, 'epoch': 0.04}
+{'loss': 0.4615, 'learning_rate': 0.0009904109589041095, 'epoch': 0.04}
+{'loss': 0.4866, 'learning_rate': 0.0009897260273972603, 'epoch': 0.04}
+{'loss': 0.4981, 'learning_rate': 0.000989041095890411, 'epoch': 0.04}
+{'loss': 0.5024, 'learning_rate': 0.0009883561643835616, 'epoch': 0.05}
+{'loss': 0.519, 'learning_rate': 0.0009876712328767123, 'epoch': 0.05}
+{'loss': 0.5003, 'learning_rate': 0.000986986301369863, 'epoch': 0.05}
+{'loss': 0.4343, 'learning_rate': 0.0009863013698630137, 'epoch': 0.05}
+{'loss': 0.5184, 'learning_rate': 0.0009856164383561644, 'epoch': 0.06}
+{'loss': 0.5067, 'learning_rate': 0.000984931506849315, 'epoch': 0.06}
+{'loss': 0.4746, 'learning_rate': 0.0009842465753424658, 'epoch': 0.06}
+{'loss': 0.3931, 'learning_rate': 0.0009835616438356163, 'epoch': 0.07}
+{'loss': 0.3975, 'learning_rate': 0.000982876712328767, 'epoch': 0.07}
+{'loss': 0.5248, 'learning_rate': 0.0009821917808219179, 'epoch': 0.07}
+{'loss': 0.4999, 'learning_rate': 0.0009815068493150684, 'epoch': 0.07}
+{'loss': 0.4048, 'learning_rate': 0.0009808219178082192, 'epoch': 0.08}
+{'loss': 0.5116, 'learning_rate': 0.00098013698630137, 'epoch': 0.08}
+{'loss': 0.5259, 'learning_rate': 0.0009794520547945205, 'epoch': 0.08}
+{'loss': 0.4621, 'learning_rate': 0.0009787671232876713, 'epoch': 0.08}
+{'loss': 0.4181, 'learning_rate': 0.0009780821917808218, 'epoch': 0.09}
+{'loss': 0.409, 'learning_rate': 0.0009773972602739726, 'epoch': 0.09}
+{'loss': 0.4759, 'learning_rate': 0.0009767123287671234, 'epoch': 0.09}
+{'loss': 0.4818, 'learning_rate': 0.000976027397260274, 'epoch': 0.1}
+{'loss': 0.4753, 'learning_rate': 0.0009753424657534247, 'epoch': 0.1}
+{'loss': 0.545, 'learning_rate': 0.0009746575342465753, 'epoch': 0.1}
+{'loss': 0.4947, 'learning_rate': 0.0009739726027397261, 'epoch': 0.1}
+{'loss': 0.5329, 'learning_rate': 0.0009732876712328768, 'epoch': 0.11}
+{'loss': 0.4205, 'learning_rate': 0.0009726027397260274, 'epoch': 0.11}
+{'loss': 0.5047, 'learning_rate': 0.0009719178082191781, 'epoch': 0.11}
+{'loss': 0.4831, 'learning_rate': 0.0009712328767123288, 'epoch': 0.12}
+{'loss': 0.4563, 'learning_rate': 0.0009705479452054795, 'epoch': 0.12}
+{'loss': 0.4557, 'learning_rate': 0.0009698630136986302, 'epoch': 0.12}
+{'loss': 0.4961, 'learning_rate': 0.0009691780821917808, 'epoch': 0.12}
+{'loss': 0.4559, 'learning_rate': 0.0009684931506849315, 'epoch': 0.13}
+{'loss': 0.4652, 'learning_rate': 0.0009678082191780823, 'epoch': 0.13}
+{'loss': 0.4418, 'learning_rate': 0.0009671232876712329, 'epoch': 0.13}
+{'loss': 0.4895, 'learning_rate': 0.0009664383561643836, 'epoch': 0.13}
+{'loss': 0.4576, 'learning_rate': 0.0009657534246575343, 'epoch': 0.14}
+{'loss': 0.5295, 'learning_rate': 0.0009650684931506849, 'epoch': 0.14}
+{'loss': 0.4143, 'learning_rate': 0.0009643835616438357, 'epoch': 0.14}
+{'loss': 0.451, 'learning_rate': 0.0009636986301369863, 'epoch': 0.15}
+{'loss': 0.4576, 'learning_rate': 0.000963013698630137, 'epoch': 0.15}
+{'loss': 0.4646, 'learning_rate': 0.0009623287671232877, 'epoch': 0.15}
+{'loss': 0.5429, 'learning_rate': 0.0009616438356164384, 'epoch': 0.15}
+{'loss': 0.51, 'learning_rate': 0.0009609589041095891, 'epoch': 0.16}
+{'loss': 0.4604, 'learning_rate': 0.0009602739726027398, 'epoch': 0.16}
+{'loss': 0.4013, 'learning_rate': 0.0009595890410958904, 'epoch': 0.16}
+{'loss': 0.444, 'learning_rate': 0.0009589041095890411, 'epoch': 0.16}
+{'loss': 0.4526, 'learning_rate': 0.0009582191780821919, 'epoch': 0.17}
+{'loss': 0.4905, 'learning_rate': 0.0009575342465753425, 'epoch': 0.17}
+{'loss': 0.5309, 'learning_rate': 0.0009568493150684932, 'epoch': 0.17}
+{'loss': 0.5093, 'learning_rate': 0.0009561643835616438, 'epoch': 0.18}
+{'loss': 0.4561, 'learning_rate': 0.0009554794520547946, 'epoch': 0.18}
+{'loss': 0.4528, 'learning_rate': 0.0009547945205479453, 'epoch': 0.18}
+{'loss': 0.4911, 'learning_rate': 0.0009541095890410959, 'epoch': 0.18}
+{'loss': 0.5003, 'learning_rate': 0.0009534246575342466, 'epoch': 0.19}
+{'loss': 0.4917, 'learning_rate': 0.0009527397260273974, 'epoch': 0.19}
+{'loss': 0.4702, 'learning_rate': 0.000952054794520548, 'epoch': 0.19}
+{'loss': 0.4441, 'learning_rate': 0.0009513698630136987, 'epoch': 0.19}
+{'loss': 0.4541, 'learning_rate': 0.0009506849315068493, 'epoch': 0.2}
+{'loss': 0.3976, 'learning_rate': 0.00095, 'epoch': 0.2}
+{'loss': 0.4376, 'learning_rate': 0.0009493150684931508, 'epoch': 0.2}
+{'loss': 0.5444, 'learning_rate': 0.0009486301369863014, 'epoch': 0.21}
+{'loss': 0.427, 'learning_rate': 0.0009479452054794521, 'epoch': 0.21}
+{'loss': 0.4471, 'learning_rate': 0.0009472602739726027, 'epoch': 0.21}
+{'loss': 0.4726, 'learning_rate': 0.0009465753424657535, 'epoch': 0.21}
+{'loss': 0.3849, 'learning_rate': 0.0009458904109589042, 'epoch': 0.22}
+{'loss': 0.507, 'learning_rate': 0.0009452054794520548, 'epoch': 0.22}
+{'loss': 0.4597, 'learning_rate': 0.0009445205479452055, 'epoch': 0.22}
+{'loss': 0.5018, 'learning_rate': 0.0009438356164383562, 'epoch': 0.22}
+{'loss': 0.4652, 'learning_rate': 0.0009431506849315069, 'epoch': 0.23}
+{'loss': 0.4645, 'learning_rate': 0.0009424657534246576, 'epoch': 0.23}
+{'loss': 0.4286, 'learning_rate': 0.0009417808219178083, 'epoch': 0.23}
+{'loss': 0.4916, 'learning_rate': 0.0009410958904109589, 'epoch': 0.24}
+{'loss': 0.4398, 'learning_rate': 0.0009404109589041097, 'epoch': 0.24}
+{'loss': 0.4341, 'learning_rate': 0.0009397260273972603, 'epoch': 0.24}
+{'loss': 0.5293, 'learning_rate': 0.000939041095890411, 'epoch': 0.24}
+{'loss': 0.5084, 'learning_rate': 0.0009383561643835617, 'epoch': 0.25}
+{'loss': 0.5126, 'learning_rate': 0.0009376712328767123, 'epoch': 0.25}
+{'loss': 0.4711, 'learning_rate': 0.0009369863013698631, 'epoch': 0.25}
+{'loss': 0.4718, 'learning_rate': 0.0009363013698630138, 'epoch': 0.25}
+{'loss': 0.4393, 'learning_rate': 0.0009356164383561644, 'epoch': 0.26}
+{'loss': 0.4391, 'learning_rate': 0.0009349315068493151, 'epoch': 0.26}
+{'loss': 0.4109, 'learning_rate': 0.0009342465753424658, 'epoch': 0.26}
+{'loss': 0.4132, 'learning_rate': 0.0009335616438356165, 'epoch': 0.27}
+{'loss': 0.3995, 'learning_rate': 0.0009328767123287672, 'epoch': 0.27}
+{'loss': 0.4945, 'learning_rate': 0.0009321917808219178, 'epoch': 0.27}
+{'loss': 0.4103, 'learning_rate': 0.0009315068493150685, 'epoch': 0.27}
+{'loss': 0.3846, 'learning_rate': 0.0009308219178082193, 'epoch': 0.28}
+{'loss': 0.4707, 'learning_rate': 0.0009301369863013699, 'epoch': 0.28}
+{'loss': 0.4288, 'learning_rate': 0.0009294520547945206, 'epoch': 0.28}
+{'loss': 0.4148, 'learning_rate': 0.0009287671232876712, 'epoch': 0.28}
+{'loss': 0.413, 'learning_rate': 0.000928082191780822, 'epoch': 0.29}
+{'loss': 0.4845, 'learning_rate': 0.0009273972602739727, 'epoch': 0.29}
+{'loss': 0.412, 'learning_rate': 0.0009267123287671233, 'epoch': 0.29}
+{'loss': 0.3687, 'learning_rate': 0.000926027397260274, 'epoch': 0.3}
+{'loss': 0.4002, 'learning_rate': 0.0009253424657534247, 'epoch': 0.3}
+{'loss': 0.4649, 'learning_rate': 0.0009246575342465754, 'epoch': 0.3}
+{'loss': 0.4347, 'learning_rate': 0.0009239726027397261, 'epoch': 0.3}
+{'loss': 0.492, 'learning_rate': 0.0009232876712328767, 'epoch': 0.31}
+{'loss': 0.4126, 'learning_rate': 0.0009226027397260274, 'epoch': 0.31}
+{'loss': 0.4631, 'learning_rate': 0.0009219178082191782, 'epoch': 0.31}
+{'loss': 0.4719, 'learning_rate': 0.0009212328767123288, 'epoch': 0.32}
+{'loss': 0.4479, 'learning_rate': 0.0009205479452054795, 'epoch': 0.32}
+{'loss': 0.5031, 'learning_rate': 0.0009198630136986302, 'epoch': 0.32}
+{'loss': 0.4484, 'learning_rate': 0.0009191780821917809, 'epoch': 0.32}
+{'loss': 0.4412, 'learning_rate': 0.0009184931506849316, 'epoch': 0.33}
+{'loss': 0.405, 'learning_rate': 0.0009178082191780823, 'epoch': 0.33}
+{'loss': 0.4776, 'learning_rate': 0.0009171232876712329, 'epoch': 0.33}
+{'loss': 0.4065, 'learning_rate': 0.0009164383561643836, 'epoch': 0.33}
+{'loss': 0.4727, 'learning_rate': 0.0009157534246575343, 'epoch': 0.34}
+{'loss': 0.4033, 'learning_rate': 0.000915068493150685, 'epoch': 0.34}
+{'loss': 0.474, 'learning_rate': 0.0009143835616438357, 'epoch': 0.34}
+{'loss': 0.4206, 'learning_rate': 0.0009136986301369863, 'epoch': 0.35}
+{'loss': 0.506, 'learning_rate': 0.0009130136986301371, 'epoch': 0.35}
+{'loss': 0.3805, 'learning_rate': 0.0009123287671232878, 'epoch': 0.35}
+{'loss': 0.4552, 'learning_rate': 0.0009116438356164384, 'epoch': 0.35}
+{'loss': 0.4123, 'learning_rate': 0.0009109589041095891, 'epoch': 0.36}
+{'loss': 0.4176, 'learning_rate': 0.0009102739726027397, 'epoch': 0.36}
+{'loss': 0.4581, 'learning_rate': 0.0009095890410958905, 'epoch': 0.36}
+{'loss': 0.439, 'learning_rate': 0.0009089041095890412, 'epoch': 0.36}
+{'loss': 0.4727, 'learning_rate': 0.0009082191780821918, 'epoch': 0.37}
+{'loss': 0.4845, 'learning_rate': 0.0009075342465753425, 'epoch': 0.37}
+{'loss': 0.4511, 'learning_rate': 0.0009068493150684933, 'epoch': 0.37}
+{'loss': 0.4546, 'learning_rate': 0.0009061643835616439, 'epoch': 0.38}
+{'loss': 0.4717, 'learning_rate': 0.0009054794520547946, 'epoch': 0.38}
+{'loss': 0.444, 'learning_rate': 0.0009047945205479452, 'epoch': 0.38}
+{'loss': 0.3866, 'learning_rate': 0.0009041095890410959, 'epoch': 0.38}
+{'loss': 0.4376, 'learning_rate': 0.0009034246575342467, 'epoch': 0.39}
+{'loss': 0.4824, 'learning_rate': 0.0009027397260273973, 'epoch': 0.39}
+{'loss': 0.5281, 'learning_rate': 0.000902054794520548, 'epoch': 0.39}
+{'loss': 0.3865, 'learning_rate': 0.0009013698630136987, 'epoch': 0.39}
+{'loss': 0.4864, 'learning_rate': 0.0009006849315068494, 'epoch': 0.4}
+{'loss': 0.4699, 'learning_rate': 0.0009000000000000001, 'epoch': 0.4}
+{'loss': 0.4345, 'learning_rate': 0.0008993150684931507, 'epoch': 0.4}
+{'loss': 0.4052, 'learning_rate': 0.0008986301369863014, 'epoch': 0.41}
+{'loss': 0.4926, 'learning_rate': 0.0008979452054794521, 'epoch': 0.41}
+{'loss': 0.4411, 'learning_rate': 0.0008972602739726028, 'epoch': 0.41}
+{'loss': 0.4816, 'learning_rate': 0.0008965753424657535, 'epoch': 0.41}
+{'loss': 0.4249, 'learning_rate': 0.0008958904109589042, 'epoch': 0.42}
+{'loss': 0.4827, 'learning_rate': 0.0008952054794520548, 'epoch': 0.42}
+{'loss': 0.4266, 'learning_rate': 0.0008945205479452056, 'epoch': 0.42}
+{'loss': 0.4193, 'learning_rate': 0.0008938356164383562, 'epoch': 0.42}
+{'loss': 0.4643, 'learning_rate': 0.0008931506849315069, 'epoch': 0.43}
+{'loss': 0.4335, 'learning_rate': 0.0008924657534246576, 'epoch': 0.43}
+{'loss': 0.519, 'learning_rate': 0.0008917808219178082, 'epoch': 0.43}
+{'loss': 0.486, 'learning_rate': 0.000891095890410959, 'epoch': 0.44}
+{'loss': 0.4232, 'learning_rate': 0.0008904109589041097, 'epoch': 0.44}
+{'loss': 0.3915, 'learning_rate': 0.0008897260273972603, 'epoch': 0.44}
+{'loss': 0.4438, 'learning_rate': 0.000889041095890411, 'epoch': 0.44}
+{'loss': 0.4351, 'learning_rate': 0.0008883561643835618, 'epoch': 0.45}
+{'loss': 0.4456, 'learning_rate': 0.0008876712328767124, 'epoch': 0.45}
+{'loss': 0.4842, 'learning_rate': 0.0008869863013698631, 'epoch': 0.45}
+{'loss': 0.4453, 'learning_rate': 0.0008863013698630137, 'epoch': 0.45}
+{'loss': 0.4709, 'learning_rate': 0.0008856164383561645, 'epoch': 0.46}
+{'loss': 0.4025, 'learning_rate': 0.0008849315068493152, 'epoch': 0.46}
+{'loss': 0.4616, 'learning_rate': 0.0008842465753424658, 'epoch': 0.46}
+{'loss': 0.4152, 'learning_rate': 0.0008835616438356165, 'epoch': 0.47}
+{'loss': 0.3874, 'learning_rate': 0.0008828767123287671, 'epoch': 0.47}
+{'loss': 0.4558, 'learning_rate': 0.0008821917808219179, 'epoch': 0.47}
+{'loss': 0.4182, 'learning_rate': 0.0008815068493150686, 'epoch': 0.47}
+{'loss': 0.3869, 'learning_rate': 0.0008808219178082192, 'epoch': 0.48}
+{'loss': 0.3744, 'learning_rate': 0.0008801369863013699, 'epoch': 0.48}
+{'loss': 0.4304, 'learning_rate': 0.0008794520547945207, 'epoch': 0.48}
+{'loss': 0.4148, 'learning_rate': 0.0008787671232876713, 'epoch': 0.48}
+{'loss': 0.4163, 'learning_rate': 0.000878082191780822, 'epoch': 0.49}
+{'loss': 0.4771, 'learning_rate': 0.0008773972602739727, 'epoch': 0.49}
+{'loss': 0.4837, 'learning_rate': 0.0008767123287671232, 'epoch': 0.49}
+{'loss': 0.4093, 'learning_rate': 0.0008760273972602741, 'epoch': 0.5}
+{'loss': 0.441, 'learning_rate': 0.0008753424657534247, 'epoch': 0.5}
+{'loss': 0.5258, 'learning_rate': 0.0008746575342465753, 'epoch': 0.5}
+{'loss': 0.3832, 'learning_rate': 0.000873972602739726, 'epoch': 0.5}
+{'loss': 0.4003, 'learning_rate': 0.0008732876712328768, 'epoch': 0.51}
+{'loss': 0.4068, 'learning_rate': 0.0008726027397260274, 'epoch': 0.51}
+{'loss': 0.4134, 'learning_rate': 0.000871917808219178, 'epoch': 0.51}
+{'loss': 0.4304, 'learning_rate': 0.0008712328767123287, 'epoch': 0.52}
+{'loss': 0.4304, 'learning_rate': 0.0008705479452054794, 'epoch': 0.52}
+{'loss': 0.374, 'learning_rate': 0.0008698630136986301, 'epoch': 0.52}
+{'loss': 0.3988, 'learning_rate': 0.0008691780821917808, 'epoch': 0.52}
+{'loss': 0.3856, 'learning_rate': 0.0008684931506849315, 'epoch': 0.53}
+{'loss': 0.4063, 'learning_rate': 0.0008678082191780821, 'epoch': 0.53}
+{'loss': 0.4864, 'learning_rate': 0.0008671232876712329, 'epoch': 0.53}
+{'loss': 0.4252, 'learning_rate': 0.0008664383561643835, 'epoch': 0.53}
+{'loss': 0.4422, 'learning_rate': 0.0008657534246575342, 'epoch': 0.54}
+{'loss': 0.3511, 'learning_rate': 0.0008650684931506849, 'epoch': 0.54}
+{'loss': 0.3985, 'learning_rate': 0.0008643835616438355, 'epoch': 0.54}
+{'loss': 0.4028, 'learning_rate': 0.0008636986301369863, 'epoch': 0.55}
+{'loss': 0.4602, 'learning_rate': 0.000863013698630137, 'epoch': 0.55}
+{'loss': 0.4912, 'learning_rate': 0.0008623287671232876, 'epoch': 0.55}
+{'loss': 0.4118, 'learning_rate': 0.0008616438356164383, 'epoch': 0.55}
+{'loss': 0.4018, 'learning_rate': 0.000860958904109589, 'epoch': 0.56}
+{'loss': 0.4459, 'learning_rate': 0.0008602739726027397, 'epoch': 0.56}
+{'loss': 0.4375, 'learning_rate': 0.0008595890410958904, 'epoch': 0.56}
+{'loss': 0.4323, 'learning_rate': 0.000858904109589041, 'epoch': 0.56}
+{'loss': 0.4493, 'learning_rate': 0.0008582191780821918, 'epoch': 0.57}
+{'loss': 0.3395, 'learning_rate': 0.0008575342465753425, 'epoch': 0.57}
+{'loss': 0.438, 'learning_rate': 0.0008568493150684931, 'epoch': 0.57}
+{'loss': 0.3547, 'learning_rate': 0.0008561643835616438, 'epoch': 0.58}
+{'loss': 0.3913, 'learning_rate': 0.0008554794520547944, 'epoch': 0.58}
+850M [00:03<00:12, 56.5MB/s]Downloading:  20%|██        | 173M/850M [00:03<00:13, 54.3MB/s]Downloading:  21%|██        | 178M/850M [00:03<00:14, 47.0MB/s]Downloading:  22%|██▏       | 185M/850M [00:03<00:13, 51.6MB/s]Downloading:  22%|██▏       | 190M/850M [00:04<00:15, 43.8MB/s]Downloading:  23%|██▎       | 194M/850M [00:04<00:17, 38.7MB/s]Downloading:  24%|██▎       | 200M/850M [00:04<00:15, 43.6MB/s]Downloading:  24%|██▍       | 206M/850M [00:04<00:14, 47.6MB/s]Downloading:  25%|██▍       | 211M/850M [00:04<00:13, 49.2MB/s]Downloading:  25%|██▌       | 216M/850M [00:04<00:13, 50.3MB/s]Downloading:  26%|██▌       | 221M/850M [00:04<00:14, 46.7MB/s]Downloading:  27%|██▋       | 226M/850M [00:04<00:15, 41.6MB/s]Downloading:  27%|██▋       | 231M/850M [00:05<00:14, 44.7MB/s]Downloading:  28%|██▊       | 238M/850M [00:05<00:12, 52.7MB/s]Downloading:  29%|██▊       | 243M/850M [00:05<00:14, 44.5MB/s]Downloading:  29%|██▉       | 250M/850M [00:05<00:12, 51.3MB/s]Downloading:  30%|███       | 256M/850M [00:05<00:11, 52.3MB/s]Downloading:  31%|███       | 262M/850M [00:05<00:11, 55.5MB/s]Downloading:  31%|███▏      | 267M/850M [00:05<00:12, 50.6MB/s]Downloading:  32%|███▏      | 273M/850M [00:05<00:11, 53.7MB/s]Downloading:  33%|███▎      | 278M/850M [00:06<00:13, 43.4MB/s]Downloading:  33%|███▎      | 283M/850M [00:06<00:13, 45.1MB/s]Downloading:  34%|███▍      | 288M/850M [00:06<00:15, 38.6MB/s]Downloading:  34%|███▍      | 292M/850M [00:06<00:14, 40.2MB/s]Downloading:  35%|███▍      | 296M/850M [00:06<00:16, 35.4MB/s]Downloading:  35%|███▌      | 300M/850M [00:06<00:18, 31.2MB/s]Downloading:  36%|███▌      | 303M/850M [00:06<00:19, 29.2MB/s]Downloading:  36%|███▋      | 310M/850M [00:07<00:14, 39.4MB/s]Downloading:  37%|███▋      | 314M/850M [00:07<00:16, 35.0MB/s]Downloading:  37%|███▋      | 318M/850M [00:07<00:16, 33.1MB/s]Downloading:  38%|███▊      | 322M/850M [00:07<00:16, 34.4MB/s]Downloading:  38%|███▊      | 325M/850M [00:07<00:16, 34.2MB/s]Downloading:  39%|███▉      | 331M/850M [00:07<00:13, 41.3MB/s]Downloading:  40%|███▉      | 338M/850M [00:07<00:10, 50.5MB/s]Downloading:  40%|████      | 344M/850M [00:07<00:10, 51.7MB/s]Downloading:  41%|████      | 349M/850M [00:07<00:10, 50.1MB/s]Downloading:  42%|████▏     | 354M/850M [00:08<00:11, 45.5MB/s]Downloading:  42%|████▏     | 359M/850M [00:08<00:10, 49.6MB/s]Downloading:  43%|████▎     | 364M/850M [00:08<00:11, 44.3MB/s]Downloading:  43%|████▎     | 369M/850M [00:08<00:12, 40.2MB/s]Downloading:  44%|████▍     | 374M/850M [00:08<00:11, 43.9MB/s]Downloading:  45%|████▍     | 380M/850M [00:08<00:10, 48.2MB/s]Downloading:  45%|████▌     | 384M/850M [00:08<00:10, 48.3MB/s]Downloading:  46%|████▌     | 389M/850M [00:08<00:11, 40.8MB/s]Downloading:  46%|████▋     | 394M/850M [00:09<00:10, 44.4MB/s]Downloading:  47%|████▋     | 399M/850M [00:09<00:11, 42.7MB/s]Downloading:  48%|████▊     | 404M/850M [00:09<00:10, 45.5MB/s]Downloading:  48%|████▊     | 409M/850M [00:09<00:10, 45.3MB/s]Downloading:  49%|████▊     | 413M/850M [00:09<00:09, 46.2MB/s]Downloading:  49%|████▉     | 418M/850M [00:09<00:09, 46.4MB/s]Downloading:  50%|████▉     | 422M/850M [00:09<00:09, 46.0MB/s]Downloading:  50%|█████     | 428M/850M [00:09<00:08, 50.1MB/s]Downloading:  51%|█████     | 433M/850M [00:09<00:10, 43.0MB/s]Downloading:  51%|█████▏    | 437M/850M [00:10<00:10, 42.9MB/s]Downloading:  52%|█████▏    | 442M/850M [00:10<00:09, 46.2MB/s]Downloading:  53%|█████▎    | 447M/850M [00:10<00:09, 46.0MB/s]Downloading:  53%|█████▎    | 451M/850M [00:10<00:10, 38.7MB/s]Downloading:  54%|█████▎    | 455M/850M [00:10<00:12, 34.4MB/s]Downloading:  54%|█████▍    | 459M/850M [00:10<00:12, 33.6MB/s]Downloading:  54%|█████▍    | 462M/850M [00:10<00:12, 31.5MB/s]Downloading:  55%|█████▍    | 467M/850M [00:10<00:11, 34.9MB/s]Downloading:  55%|█████▌    | 470M/850M [00:11<00:12, 32.7MB/s]Downloading:  56%|█████▌    | 477M/850M [00:11<00:09, 42.9MB/s]Downloading:  57%|█████▋    | 483M/850M [00:11<00:08, 46.6MB/s]Downloading:  57%|█████▋    | 488M/850M [00:11<00:10, 37.5MB/s]Downloading:  58%|█████▊    | 491M/850M [00:11<00:11, 33.2MB/s]Downloading:  58%|█████▊    | 495M/850M [00:11<00:11, 32.8MB/s]Downloading:  59%|█████▊    | 499M/850M [00:11<00:10, 35.3MB/s]Downloading:  59%|█████▉    | 505M/850M [00:11<00:08, 42.4MB/s]Downloading:  60%|█████▉    | 509M/850M [00:12<00:10, 35.5MB/s]Downloading:  60%|██████    | 513M/850M [00:12<00:09, 36.0MB/s]Downloading:  61%|██████    | 518M/850M [00:12<00:09, 38.5MB/s]Downloading:  62%|██████▏   | 523M/850M [00:12<00:08, 42.7MB/s]Downloading:  62%|██████▏   | 528M/850M [00:12<00:07, 45.6MB/s]Downloading:  63%|██████▎   | 533M/850M [00:12<00:07, 45.0MB/s]Downloading:  63%|██████▎   | 540M/850M [00:12<00:06, 52.3MB/s]Downloading:  64%|██████▍   | 545M/850M [00:12<00:08, 37.4MB/s]Downloading:  65%|██████▌   | 554M/850M [00:13<00:06, 50.4MB/s]Downloading:  66%|██████▌   | 560M/850M [00:13<00:06, 46.0MB/s]Downloading:  67%|██████▋   | 566M/850M [00:13<00:06, 43.5MB/s]Downloading:  67%|██████▋   | 570M/850M [00:13<00:07, 39.1MB/s]Downloading:  68%|██████▊   | 577M/850M [00:13<00:06, 46.2MB/s]Downloading:  68%|██████▊   | 582M/850M [00:13<00:06, 42.4MB/s]Downloading:  69%|██████▉   | 586M/850M [00:13<00:07, 38.9MB/s]Downloading:  69%|██████▉   | 590M/850M [00:14<00:07, 35.4MB/s]Downloading:  70%|██████▉   | 595M/850M [00:14<00:07, 38.1MB/s]Downloading:  71%|███████   | 603M/850M [00:14<00:05, 48.5MB/s]Downloading:  72%|███████▏  | 609M/850M [00:14<00:04, 53.4MB/s]Downloading:  72%|███████▏  | 614M/850M [00:14<00:05, 45.3MB/s]Downloading:  73%|███████▎  | 619M/850M [00:14<00:05, 41.7MB/s]Downloading:  74%|███████▎  | 626M/850M [00:14<00:04, 49.8MB/s]Downloading:  74%|███████▍  | 632M/850M [00:14<00:04, 47.8MB/s]Downloading:  75%|███████▍  | 636M/850M [00:15<00:05, 42.9MB/s]Downloading:  75%|███████▌  | 642M/850M [00:15<00:04, 43.9MB/s]Downloading:  76%|███████▌  | 648M/850M [00:15<00:04, 48.1MB/s]Downloading:  77%|███████▋  | 653M/850M [00:15<00:04, 42.5MB/s]Downloading:  77%|███████▋  | 657M/850M [00:15<00:05, 37.6MB/s]Downloading:  78%|███████▊  | 661M/850M [00:15<00:05, 38.2MB/s]Downloading:  78%|███████▊  | 665M/850M [00:15<00:04, 40.2MB/s]Downloading:  79%|███████▊  | 669M/850M [00:15<00:04, 38.1MB/s]Downloading:  79%|███████▉  | 674M/850M [00:16<00:04, 41.3MB/s]Downloading:  80%|███████▉  | 680M/850M [00:16<00:03, 45.7MB/s]Downloading:  80%|████████  | 684M/850M [00:16<00:03, 45.9MB/s]Downloading:  81%|████████  | 689M/850M [00:16<00:03, 44.8MB/s]Downloading:  82%|████████▏ | 695M/850M [00:16<00:03, 51.0MB/s]Downloading:  82%|████████▏ | 700M/850M [00:16<00:03, 45.3MB/s]Downloading:  83%|████████▎ | 707M/850M [00:16<00:02, 51.8MB/s]Downloading:  84%|████████▍ | 714M/850M [00:16<00:02, 57.4MB/s]Downloading:  85%|████████▍ | 719M/850M [00:17<00:02, 50.7MB/s]Downloading:  85%|████████▌ | 724M/850M [00:17<00:02, 48.1MB/s]Downloading:  86%|████████▌ | 729M/850M [00:17<00:02, 44.3MB/s]Downloading:  86%|████████▋ | 734M/850M [00:17<00:03, 37.4MB/s]Downloading:  87%|████████▋ | 738M/850M [00:17<00:02, 40.4MB/s]Downloading:  87%|████████▋ | 742M/850M [00:17<00:03, 37.5MB/s]Downloading:  88%|████████▊ | 747M/850M [00:17<00:02, 40.9MB/s]Downloading:  88%|████████▊ | 751M/850M [00:17<00:02, 36.2MB/s]Downloading:  89%|████████▉ | 755M/850M [00:18<00:02, 35.1MB/s]Downloading:  89%|████████▉ | 759M/850M [00:18<00:02, 36.8MB/s]Downloading:  90%|████████▉ | 764M/850M [00:18<00:02, 41.2MB/s]Downloading:  90%|█████████ | 768M/850M [00:18<00:02, 39.2MB/s]Downloading:  91%|█████████ | 772M/850M [00:18<00:02, 34.4MB/s]Downloading:  91%|█████████ | 776M/850M [00:18<00:02, 33.1MB/s]Downloading:  92%|█████████▏| 783M/850M [00:18<00:01, 44.3MB/s]Downloading:  93%|█████████▎| 788M/850M [00:18<00:01, 47.3MB/s]Downloading:  93%|█████████▎| 793M/850M [00:18<00:01, 46.2MB/s]Downloading:  94%|█████████▍| 798M/850M [00:19<00:01, 41.1MB/s]Downloading:  94%|█████████▍| 802M/850M [00:19<00:01, 43.6MB/s]Downloading:  95%|█████████▍| 807M/850M [00:19<00:01, 36.0MB/s]Downloading:  95%|█████████▌| 811M/850M [00:19<00:01, 31.2MB/s]Downloading:  96%|█████████▌| 814M/850M [00:19<00:01, 28.5MB/s]Downloading:  96%|█████████▌| 817M/850M [00:20<00:01, 21.3MB/s]Downloading:  97%|█████████▋| 821M/850M [00:20<00:01, 26.8MB/s]Downloading:  97%|█████████▋| 829M/850M [00:20<00:00, 37.9MB/s]Downloading:  98%|█████████▊| 834M/850M [00:20<00:00, 41.1MB/s]Downloading:  99%|█████████▊| 838M/850M [00:20<00:00, 36.0MB/s]Downloading:  99%|█████████▉| 842M/850M [00:20<00:00, 30.1MB/s]Downloading: 100%|█████████▉| 848M/850M [00:20<00:00, 36.4MB/s]Downloading: 100%|██████████| 850M/850M [00:20<00:00, 42.8MB/s]
+/opt/conda/lib/python3.9/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+Traceback (most recent call last):
+  File "/home/y5luo/DSC180B_project/T5_SQuAD_Prompt_Tuning/run.py", line 200, in <module>
+    main(args)
+  File "/home/y5luo/DSC180B_project/T5_SQuAD_Prompt_Tuning/run.py", line 140, in main
+    train(args)
+  File "/home/y5luo/DSC180B_project/T5_SQuAD_Prompt_Tuning/run.py", line 127, in train
+    trainer.train()
+  File "/home/y5luo/.local/lib/python3.9/site-packages/transformers/trainer.py", line 1332, in train
+    tr_loss_step = self.training_step(model, inputs)
+  File "/home/y5luo/.local/lib/python3.9/site-packages/transformers/trainer.py", line 1891, in training_step
+    loss = self.compute_loss(model, inputs)
+  File "/home/y5luo/.local/lib/python3.9/site-packages/transformers/trainer.py", line 1923, in compute_loss
+    outputs = model(**inputs)
+  File "/opt/conda/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/opt/conda/lib/python3.9/site-packages/torch/nn/parallel/data_parallel.py", line 168, in forward
+    outputs = self.parallel_apply(replicas, inputs, kwargs)
+  File "/opt/conda/lib/python3.9/site-packages/torch/nn/parallel/data_parallel.py", line 178, in parallel_apply
+    return parallel_apply(replicas, inputs, kwargs, self.device_ids[:len(replicas)])
+  File "/opt/conda/lib/python3.9/site-packages/torch/nn/parallel/parallel_apply.py", line 78, in parallel_apply
+    thread.join()
+  File "/opt/conda/lib/python3.9/threading.py", line 1033, in join
+    self._wait_for_tstate_lock()
+  File "/opt/conda/lib/python3.9/threading.py", line 1049, in _wait_for_tstate_lock
+    elif lock.acquire(block, timeout):
+KeyboardInterrupt
