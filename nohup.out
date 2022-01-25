@@ -1,0 +1,56 @@
+  File "run.py", line 148
+    soft_prompt_path=f'soft_prompt/soft_prompt_{model_name}_{n_tokens}.model')
+                                                                            ^
+SyntaxError: invalid syntax
+  File "run.py", line 148
+    soft_prompt_path=f'soft_prompt/soft_prompt_{model_name}_{n_tokens}.model')
+                                                                            ^
+SyntaxError: invalid syntax
+  File "run.py", line 148
+    soft_prompt_path=f'soft_prompt/soft_prompt_{model_name}_{n_tokens}.model')
+                                                                            ^
+SyntaxError: invalid syntax
+  File "run.py", line 148
+    soft_prompt_path=f'soft_prompt/soft_prompt_{model_name}_{n_tokens}.model')
+                                                                            ^
+SyntaxError: invalid syntax
+***** Running training *****
+  Num examples = 87599
+  Num Epochs = 4
+  Instantaneous batch size per device = 6
+  Total train batch size (w. parallel, distributed & accumulation) = 12
+  Gradient Accumulation steps = 1
+  Total optimization steps = 29200
+***** Running training *****
+  Num examples = 87599
+  Num Epochs = 4
+  Instantaneous batch size per device = 10
+  Total train batch size (w. parallel, distributed & accumulation) = 20
+  Gradient Accumulation steps = 1
+  Total optimization steps = 17520
+***** Running training *****
+  Num examples = 87599
+  Num Epochs = 4
+  Instantaneous batch size per device = 16
+  Total train batch size (w. parallel, distributed & accumulation) = 32
+  Gradient Accumulation steps = 1
+  Total optimization steps = 10952
+***** Running training *****
+  Num examples = 87599
+  Num Epochs = 4
+  Instantaneous batch size per device = 32
+  Total train batch size (w. parallel, distributed & accumulation) = 64
+  Gradient Accumulation steps = 1
+  Total optimization steps = 5476
+***** Running training *****
+  Num examples = 87599
+  Num Epochs = 4
+  Instantaneous batch size per device = 128
+  Total train batch size (w. parallel, distributed & accumulation) = 256
+  Gradient Accumulation steps = 1
+  Total optimization steps = 1372
+
+
+Training completed. Do not forget to share your model on huggingface.co/models =)
+
+
