@@ -1,0 +1,1 @@
+{"method": "prompt_tuning", "model": "t5-base", "mode": "train", "dataset": "squad", "model_dir": "none", "soft_prompt_path": null, "n_tokens": 20, "initialize_from_vocab": true, "random_range": 0.5, "bz": 10, "lr": 0.001, "epoch": 4, "optimizer": "adafactor", "clip_threshold": 1.0, "scale_parameter": false, "relative_step": false, "warmup_init": false}
