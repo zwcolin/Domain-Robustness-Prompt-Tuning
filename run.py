@@ -120,17 +120,17 @@ def train(args):
     if "gpt" in args["model"]:
         model_name = args["model"]
         config = AutoConfig.from_pretrained(
-            model_name, cache_dir=f"cache/{model_name}"
+            model_name, cache_dir=f"cache/{model_name}-s3"
         )
         config._my_arg_tune_mode = "prefixtune"
         config._objective_mode = 1
         config._my_arg_task_mode = "webnlg"
         config.return_dict = True
         tokenizer = AutoTokenizer.from_pretrained(
-            model_name, cache_dir=f"cache/{model_name}"
+            model_name, cache_dir=f"cache/{model_name}-s3"
         )
         model = GPT2LMHeadModel.from_pretrained(
-            model_name, config=config, cache_dir=f"cache/{model_name}"
+            model_name, config=config, cache_dir=f"cache/{model_name}-s3"
         )
 
         num_added_tokens = tokenizer.add_special_tokens({"pad_token": "[PAD]"})
@@ -148,7 +148,7 @@ def train(args):
         gpt2 = model
 
         config_prefix = AutoConfig.from_pretrained(
-            model_name, cache_dir=f"cache/{model_name}"
+            model_name, cache_dir=f"cache/{model_name}-s3"
         )
         config_prefix._my_arg_tune_mode = "prefixtune"
         config_prefix._my_arg_task_mode = "webnlg"
@@ -173,20 +173,22 @@ def train(args):
             output_dir="webnlg_models/",
             overwrite_output_dir=True,
             do_train=True,
-            do_eval=True,
+            # do_eval=True,
             evaluate_during_training=True,
             evaluation_strategy=EvaluationStrategy.STEPS,
-            prediction_loss_only=False,
+            # False will cause a bug
+            prediction_loss_only=True,
             per_device_train_batch_size=5,
             per_device_eval_batch_size=5,
             adam_beta1=0.9,
             adam_beta2=0.999,
-            num_train_epochs=5.0,
+            num_train_epochs=3,
             logging_dir="webnlg_models/runs/",
+            logging_steps=100,
             save_steps=500000,
             save_total_limit=1,
             seed=101,
-            eval_steps=5000,
+            # eval_steps=5000,
             dataloader_num_workers=0,
             run_name=None,
             disable_tqdm=True,
@@ -265,38 +267,36 @@ def train(args):
         # TODO: we might need s scheduler
         lr_scheduler = None
 
-    # elif args["optimizer"] == "adamw":
-    #     pass
-    #     # TODO: get adamw optimizer for gpt2
+        # elif args["optimizer"] == "adamw":
+        #     pass
+        #     # TODO: get adamw optimizer for gpt2
 
         training_args = TrainingArguments(
-                per_device_train_batch_size=args['bz'],  # batch size per device during training
-                per_device_eval_batch_size=args['bz'],   # batch size for evaluation
-                num_train_epochs=args['epoch'],
-                # num_train_epochs=args['epoch'],
-                disable_tqdm=True,
-
-                output_dir='./results',          # output directory
-                save_steps=1000000, #TODO: hardcoded for debugging, I don't want to mess up my disk space
-
-                logging_dir=path,            # directory for storing logs
-                logging_steps=20,
-            )
+            per_device_train_batch_size=args[
+                "bz"
+            ],  # batch size per device during training
+            per_device_eval_batch_size=args["bz"],  # batch size for evaluation
+            num_train_epochs=args["epoch"],
+            # num_train_epochs=args['epoch'],
+            disable_tqdm=True,
+            output_dir="./results",  # output directory
+            save_steps=1000000,  # TODO: hardcoded for debugging, I don't want to mess up my disk space
+            logging_dir=path,  # directory for storing logs
+            logging_steps=20,
+        )
 
         trainer = Trainer(
-                    model=model,
-                    args=training_args,
-                    train_dataset=train_dataset,
-                    eval_dataset=valid_dataset,
-                    data_collator=T2TDataCollator(),
-                    optimizers=(optimizer, lr_scheduler),
-                )
+            model=model,
+            args=training_args,
+            train_dataset=train_dataset,
+            eval_dataset=valid_dataset,
+            data_collator=T2TDataCollator(),
+            optimizers=(optimizer, lr_scheduler),
+        )
 
         trainer.train()
     else:
         pass
-
-    
 
     if args["method"] == "prompt_tuning":
         model.save_soft_prompt(path, filename="soft_prompt.model")

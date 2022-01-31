@@ -956,59 +956,6 @@ class Trainer_Prefix:
                         metrics = self.evaluate()
                         self._report_to_hp_search(trial, epoch, metrics)
 
-                        #############################EARLY STOPPING########################
-                        if (
-                            "lowdata" in self.args.output_dir
-                            or "earlystop" in self.args.output_dir
-                        ):
-                            self.save_based_on_eval = True
-                        else:
-                            self.save_based_on_eval = False
-                        print(
-                            "if not see a line lowdata: below, then did not go into low data. "
-                        )
-                        if (
-                            self.save_based_on_eval
-                            and metrics["eval_loss"] < self.curr_best_eval
-                        ):
-                            print(
-                                "lowdata:",
-                                self.global_step,
-                                self.curr_best_eval,
-                                metrics["eval_loss"],
-                                "perplexity={}".format(math.exp(metrics["eval_loss"])),
-                            )
-                            self.curr_best_eval = metrics["eval_loss"]
-                            if hasattr(model, "module"):
-                                assert (
-                                    model.module is self.model
-                                ), f"Module {model.module} should be a reference to self.model"
-                            else:
-                                assert (
-                                    model is self.model
-                                ), f"Model {model} should be a reference to self.model"
-                            # Save model checkpoint
-                            output_dir_name = os.path.basename(self.args.output_dir)
-                            checkpoint_folder = f"{output_dir_name}-{PREFIX_CHECKPOINT_DIR}-{self.global_step}"
-                            if self.hp_search_backend is not None and trial is not None:
-                                run_id = (
-                                    trial.number
-                                    if self.hp_search_backend == HPSearchBackend.OPTUNA
-                                    else tune.get_trial_id()
-                                )
-                                checkpoint_folder += f"-run-{run_id}"
-                            output_dir = os.path.join(
-                                self.args.output_dir, checkpoint_folder
-                            )
-
-                            self.store_flos()
-                            print("saving to output_dir", output_dir)
-                            self.save_model(output_dir)
-
-                            if self.is_world_process_zero():
-                                self._rotate_checkpoints(use_mtime=True)
-                        #####################################################
-
                     if (
                         self.args.save_steps > 0
                         and self.global_step % self.args.save_steps == 0
