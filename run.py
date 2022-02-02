@@ -201,6 +201,7 @@ def train(args):
             tokenizer=tokenizer,
             model_gpt2=gpt2,
             args=training_args,
+            prediction_loss_only=True,
             train_dataset=train_dataset,
             eval_dataset=eval_dataset,
             data_collator=data_collator,
@@ -218,28 +219,26 @@ def train(args):
         trainer.save_model()
 
         # Evaluation still working in progress
-        # results = {}
-        # if training_args.do_eval:
-        #     print("*** Evaluate ***")
+        results = {}
+        if training_args.do_eval:
+            print("*** Evaluate ***")
 
-        #     # eval_output = trainer.evaluate()
-        #     eval_output = trainer.evaluate(train_dataset)
+            eval_output = trainer.evaluate(train_dataset)
 
-        #     # perplexity = math.exp(eval_output["eval_loss"])
-        #     perplexity = eval_output["eval_loss"]
-        #     result = {"perplexity": perplexity}
+            perplexity = eval_output["eval_loss"]
+            result = {"perplexity": perplexity}
 
-        #     output_eval_file = os.path.join(
-        #         training_args.output_dir, "eval_results_lm.txt"
-        #     )
-        #     if trainer.is_world_master():
-        #         with open(output_eval_file, "w") as writer:
-        #             print("***** Eval results *****")
-        #             for key in sorted(result.keys()):
-        #                 print("  %s = %s", key, str(result[key]))
-        #                 writer.write("%s = %s\n" % (key, str(result[key])))
+            output_eval_file = os.path.join(
+                training_args.output_dir, "eval_results_lm.txt"
+            )
+            if trainer.is_world_master():
+                with open(output_eval_file, "w") as writer:
+                    print("***** Eval results *****")
+                    for key in sorted(result.keys()):
+                        print("  %s = %s", key, str(result[key]))
+                        writer.write("%s = %s\n" % (key, str(result[key])))
 
-        #     results.update(result)
+            results.update(result)
 
         del model
         del trainer
@@ -248,12 +247,12 @@ def train(args):
         elem = os.path.abspath(training_args.output_dir)
         checkpoint_path = elem
 
-        # print("running evaluation on ", checkpoint_path)
+        print("running evaluation on ", checkpoint_path)
 
-        # print("python gen.py webnlg yes valid {} no".format(checkpoint_path))
-        # print("python gen.py webnlg yes test {} no".format(checkpoint_path))
-        # os.system("python gen.py webnlg yes valid {} no".format(checkpoint_path))
-        # os.system("python gen.py webnlg yes test {} no".format(checkpoint_path))
+        print("python gen.py webnlg yes valid {} no".format(checkpoint_path))
+        print("python gen.py webnlg yes test {} no".format(checkpoint_path))
+        os.system("python gen.py webnlg yes valid {} no".format(checkpoint_path))
+        os.system("python gen.py webnlg yes test {} no".format(checkpoint_path))
 
     if args["optimizer"] == "adafactor":
         optimizer = Adafactor(
