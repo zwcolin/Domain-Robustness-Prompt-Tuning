@@ -1,0 +1,45 @@
+***** Running training *****
+  Num examples = 87599
+  Num Epochs = 4
+  Instantaneous batch size per device = 32
+  Total train batch size (w. parallel, distributed & accumulation) = 64
+  Gradient Accumulation steps = 1
+  Total optimization steps = 5476
+***** Running training *****
+  Num examples = 87599
+  Num Epochs = 4
+  Instantaneous batch size per device = 32
+  Total train batch size (w. parallel, distributed & accumulation) = 64
+  Gradient Accumulation steps = 1
+  Total optimization steps = 5476
+***** Running training *****
+  Num examples = 87599
+  Num Epochs = 4
+  Instantaneous batch size per device = 32
+  Total train batch size (w. parallel, distributed & accumulation) = 64
+  Gradient Accumulation steps = 1
+  Total optimization steps = 5476
+***** Running training *****
+  Num examples = 87599
+  Num Epochs = 4
+  Instantaneous batch size per device = 28
+  Total train batch size (w. parallel, distributed & accumulation) = 56
+  Gradient Accumulation steps = 1
+  Total optimization steps = 6260
+
+
+Training completed. Do not forget to share your model on huggingface.co/models =)
+
+
+***** Running training *****
+  Num examples = 87599
+  Num Epochs = 4
+  Instantaneous batch size per device = 8
+  Total train batch size (w. parallel, distributed & accumulation) = 16
+  Gradient Accumulation steps = 1
+  Total optimization steps = 21900
+
+
+Training completed. Do not forget to share your model on huggingface.co/models =)
+
+
