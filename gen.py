@@ -15,30 +15,15 @@ if __name__ == '__main__':
         # gen_dir = 'webNLG_results'
         gen_dir = 'webNLG_results2'
 
-        sub_model_name = os.path.basename(MODEL_FILE)
+        tuning_mode = 'prefixtune'
+        app = '--optim_prefix {} --preseqlen {} '.format('yes', 20)
+        app += "--prefix_mode activation "
+        app += " --format_mode cat "
 
-        if 'o=' in sub_model_name:
-            o_idx = sub_model_name.index('o=')
-            num_idx = sub_model_name[o_idx+2]
-            print(num_idx)
+        MODEL_FILE2 = '/home/l6wang/T5_SQuAD_Prompt_Tuning/webnlg_models/train'
 
-        if 'prefixtune' in MODEL_FILE:
-            tuning_mode = 'prefixtune'
-            app = '--optim_prefix {} --preseqlen {} '.format('yes', 20)
-            app += "--prefix_mode activation "
-            if "_inf" in MODEL_FILE or 'infix' in MODEL_FILE:
-                app += " --format_mode infix "
-            elif "_cat" in MODEL_FILE:
-                app += " --format_mode cat "
-            elif "_pee" in MODEL_FILE:
-                app += " --format_mode peek "
-
-            MODEL_FILE2 = MODEL_FILE
-
-            if 'large' in sub_model_name:
-                MODEL_FILE = 'gpt2-large'
-            else:
-                MODEL_FILE = 'gpt2-medium'
+        # MODEL_FILE = 'gpt2-large'
+        MODEL_FILE = 'gpt2-medium'
 
 
     COMMANDLINE = "python run_generation.py \
@@ -53,12 +38,7 @@ if __name__ == '__main__':
     ".format(MODEL_FILE, Token_FILE, mode, control_mode, tuning_mode, gen_dir, eval_split)
 
     COMMANDLINE += app
-
-    if tuning_mode == 'prefixtune':
-        COMMANDLINE += ' --prefixModel_name_or_path {}'.format(MODEL_FILE2)
-        name = os.path.basename(MODEL_FILE2)
-    else:
-        name = os.path.basename(MODEL_FILE)
+    COMMANDLINE += ' --prefixModel_name_or_path {}'.format(MODEL_FILE2)
 
 
     if MODEL_FILE == 'gpt2-large':

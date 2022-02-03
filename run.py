@@ -170,10 +170,10 @@ def train(args):
             tokenizer=tokenizer, mlm=False, mlm_probability=0.15, format_mode="cat"
         )
         training_args = TrainingArguments(
-            output_dir="webnlg_models/",
+            output_dir="webnlg_models/train",
             overwrite_output_dir=True,
             do_train=True,
-            # do_eval=True,
+            do_eval=True,
             evaluate_during_training=True,
             evaluation_strategy=EvaluationStrategy.STEPS,
             # False will cause a bug
@@ -182,7 +182,7 @@ def train(args):
             per_device_eval_batch_size=5,
             adam_beta1=0.9,
             adam_beta2=0.999,
-            num_train_epochs=3,
+            num_train_epochs=5,
             logging_dir="webnlg_models/runs/",
             logging_steps=100,
             save_steps=500000,
