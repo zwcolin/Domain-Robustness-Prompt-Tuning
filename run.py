@@ -133,15 +133,15 @@ def train(args):
             model_name, config=config, cache_dir=f"cache/{model_name}-s3"
         )
 
-        num_added_tokens = tokenizer.add_special_tokens({"pad_token": "[PAD]"})
-        embedding_layer = model.resize_token_embeddings(len(tokenizer))
+        tokenizer.add_special_tokens({"pad_token": "[PAD]"})
+        model.resize_token_embeddings(len(tokenizer))
         train_dataset = get_dataset(
             tokenizer=tokenizer,
-            file_path="/home/l6wang/PrefixTuning/data/webnlg_challenge_2017/train.json",
+            file_path="data/webnlg_challenge_2017/train.json",
         )
         eval_dataset = get_dataset(
             tokenizer=tokenizer,
-            file_path="/home/l6wang/PrefixTuning/data/webnlg_challenge_2017/train.json",
+            file_path="data/webnlg_challenge_2017/train.json",
         )
         for param in model.base_model.parameters():
             param.requires_grad = False
@@ -155,13 +155,11 @@ def train(args):
         config_prefix._my_arg_control = True
         config_prefix.train_weights = "no"
         config_prefix.optim_prefix = True
-        config_prefix.preseqlen = 5
+        config_prefix.preseqlen = 10
         config_prefix.use_infix = False
         config_prefix.format_mode = "cat"
         config_prefix.prefix_dropout = 0.0
         config_prefix.vocab_size = len(tokenizer)
-
-        # some extra stuff.
         config_prefix.init_random = "no"
         config_prefix.mid_dim = 512
 
@@ -169,9 +167,10 @@ def train(args):
         data_collator = DataCollatorForData2TextLanguageModeling(
             tokenizer=tokenizer, mlm=False, mlm_probability=0.15, format_mode="cat"
         )
+        timestamp = datetime.now().strftime("%Y-%m-%d-%H%M%S")
         training_args = TrainingArguments(
-            output_dir="webnlg_models/train",
-            overwrite_output_dir=True,
+            output_dir="webnlg_models/medium-10",
+            overwrite_output_dir=False,
             do_train=True,
             do_eval=True,
             evaluate_during_training=True,
