@@ -83,140 +83,141 @@ def train(args):
         )
 
     if "gpt" in args["model"]:
-        model_name = args["model"]
-        config = AutoConfig.from_pretrained(
-            model_name, cache_dir=f"cache/{model_name}-s3"
-        )
-        config._my_arg_tune_mode = "prefixtune"
-        config._objective_mode = 1
-        config._my_arg_task_mode = "webnlg"
-        config.return_dict = True
-        tokenizer = AutoTokenizer.from_pretrained(
-            model_name, cache_dir=f"cache/{model_name}-s3"
-        )
-        model = GPT2LMHeadModel.from_pretrained(
-            model_name, config=config, cache_dir=f"cache/{model_name}-s3"
-        )
+        # model_name = args["model"]
+        # config = AutoConfig.from_pretrained(
+        #     model_name, cache_dir=f"cache/{model_name}-s3"
+        # )
+        # config._my_arg_tune_mode = "prefixtune"
+        # config._objective_mode = 1
+        # config._my_arg_task_mode = "webnlg"
+        # config.return_dict = True
+        # tokenizer = AutoTokenizer.from_pretrained(
+        #     model_name, cache_dir=f"cache/{model_name}-s3"
+        # )
+        # model = GPT2LMHeadModel.from_pretrained(
+        #     model_name, config=config, cache_dir=f"cache/{model_name}-s3"
+        # )
 
-        tokenizer.add_special_tokens({"pad_token": "[PAD]"})
-        model.resize_token_embeddings(len(tokenizer))
-        train_dataset = get_dataset(
-            tokenizer=tokenizer,
-            file_path="data/webnlg_challenge_2017/train.json",
-        )
-        eval_dataset = get_dataset(
-            tokenizer=tokenizer,
-            file_path="data/webnlg_challenge_2017/train.json",
-        )
-        for param in model.base_model.parameters():
-            param.requires_grad = False
-        gpt2 = model
+        # tokenizer.add_special_tokens({"pad_token": "[PAD]"})
+        # model.resize_token_embeddings(len(tokenizer))
+        # train_dataset = get_dataset(
+        #     tokenizer=tokenizer,
+        #     file_path="data/webnlg_challenge_2017/train.json",
+        # )
+        # eval_dataset = get_dataset(
+        #     tokenizer=tokenizer,
+        #     file_path="data/webnlg_challenge_2017/train.json",
+        # )
+        # for param in model.base_model.parameters():
+        #     param.requires_grad = False
+        # gpt2 = model
 
-        config_prefix = AutoConfig.from_pretrained(
-            model_name, cache_dir=f"cache/{model_name}-s3"
-        )
-        config_prefix._my_arg_tune_mode = "prefixtune"
-        config_prefix._my_arg_task_mode = "webnlg"
-        config_prefix._my_arg_control = True
-        config_prefix.train_weights = "no"
-        config_prefix.optim_prefix = True
-        config_prefix.preseqlen = 10
-        config_prefix.use_infix = False
-        config_prefix.format_mode = "cat"
-        config_prefix.prefix_dropout = 0.0
-        config_prefix.vocab_size = len(tokenizer)
-        config_prefix.init_random = "no"
-        config_prefix.mid_dim = 512
+        # config_prefix = AutoConfig.from_pretrained(
+        #     model_name, cache_dir=f"cache/{model_name}-s3"
+        # )
+        # config_prefix._my_arg_tune_mode = "prefixtune"
+        # config_prefix._my_arg_task_mode = "webnlg"
+        # config_prefix._my_arg_control = True
+        # config_prefix.train_weights = "no"
+        # config_prefix.optim_prefix = True
+        # config_prefix.preseqlen = 10
+        # config_prefix.use_infix = False
+        # config_prefix.format_mode = "cat"
+        # config_prefix.prefix_dropout = 0.0
+        # config_prefix.vocab_size = len(tokenizer)
+        # config_prefix.init_random = "no"
+        # config_prefix.mid_dim = 512
 
-        model = PrefixTuning(config_prefix, model_gpt2=gpt2)
-        data_collator = DataCollatorForData2TextLanguageModeling(
-            tokenizer=tokenizer, mlm=False, mlm_probability=0.15, format_mode="cat"
-        )
-        timestamp = datetime.now().strftime("%Y-%m-%d-%H%M%S")
-        training_args = TrainingArguments(
-            output_dir="webnlg_models/medium-10",
-            overwrite_output_dir=False,
-            do_train=True,
-            do_eval=True,
-            evaluate_during_training=True,
-            evaluation_strategy=EvaluationStrategy.STEPS,
-            # False will cause a bug
-            prediction_loss_only=True,
-            per_device_train_batch_size=5,
-            per_device_eval_batch_size=5,
-            adam_beta1=0.9,
-            adam_beta2=0.999,
-            num_train_epochs=5,
-            logging_dir="webnlg_models/runs/",
-            logging_steps=100,
-            save_steps=500000,
-            save_total_limit=1,
-            seed=101,
-            # eval_steps=5000,
-            dataloader_num_workers=0,
-            run_name=None,
-            disable_tqdm=True,
-            remove_unused_columns=True,
-            label_names=None,
-        )
+        # model = PrefixTuning(config_prefix, model_gpt2=gpt2)
+        # data_collator = DataCollatorForData2TextLanguageModeling(
+        #     tokenizer=tokenizer, mlm=False, mlm_probability=0.15, format_mode="cat"
+        # )
+        # timestamp = datetime.now().strftime("%Y-%m-%d-%H%M%S")
+        # training_args = TrainingArguments(
+        #     output_dir="webnlg_models/medium-10",
+        #     overwrite_output_dir=False,
+        #     do_train=True,
+        #     do_eval=True,
+        #     evaluate_during_training=True,
+        #     evaluation_strategy=EvaluationStrategy.STEPS,
+        #     # False will cause a bug
+        #     prediction_loss_only=True,
+        #     per_device_train_batch_size=5,
+        #     per_device_eval_batch_size=5,
+        #     adam_beta1=0.9,
+        #     adam_beta2=0.999,
+        #     num_train_epochs=5,
+        #     logging_dir="webnlg_models/runs/",
+        #     logging_steps=100,
+        #     save_steps=500000,
+        #     save_total_limit=1,
+        #     seed=101,
+        #     # eval_steps=5000,
+        #     dataloader_num_workers=0,
+        #     run_name=None,
+        #     disable_tqdm=True,
+        #     remove_unused_columns=True,
+        #     label_names=None,
+        # )
 
-        trainer = Trainer_Prefix(
-            model=model,
-            tokenizer=tokenizer,
-            model_gpt2=gpt2,
-            args=training_args,
-            prediction_loss_only=True,
-            train_dataset=train_dataset,
-            eval_dataset=eval_dataset,
-            data_collator=data_collator,
-            task_mode="webnlg",
-            use_dropout=False,
-        )
+        # trainer = Trainer_Prefix(
+        #     model=model,
+        #     tokenizer=tokenizer,
+        #     model_gpt2=gpt2,
+        #     args=training_args,
+        #     prediction_loss_only=True,
+        #     train_dataset=train_dataset,
+        #     eval_dataset=eval_dataset,
+        #     data_collator=data_collator,
+        #     task_mode="webnlg",
+        #     use_dropout=False,
+        # )
 
-        # For convenience, we also re-save the tokenizer to the same directory,
-        # so that you can share your model easily on huggingface.co/models =)
+        # # For convenience, we also re-save the tokenizer to the same directory,
+        # # so that you can share your model easily on huggingface.co/models =)
 
-        if trainer.is_world_master():
-            tokenizer.save_pretrained(training_args.output_dir)
+        # if trainer.is_world_master():
+        #     tokenizer.save_pretrained(training_args.output_dir)
 
-        trainer.train()
-        trainer.save_model()
+        # trainer.train()
+        # trainer.save_model()
 
-        # Evaluation still working in progress
-        results = {}
-        if training_args.do_eval:
-            print("*** Evaluate ***")
+        # # Evaluation still working in progress
+        # results = {}
+        # if training_args.do_eval:
+        #     print("*** Evaluate ***")
 
-            eval_output = trainer.evaluate(train_dataset)
+        #     eval_output = trainer.evaluate(train_dataset)
 
-            perplexity = eval_output["eval_loss"]
-            result = {"perplexity": perplexity}
+        #     perplexity = eval_output["eval_loss"]
+        #     result = {"perplexity": perplexity}
 
-            output_eval_file = os.path.join(
-                training_args.output_dir, "eval_results_lm.txt"
-            )
-            if trainer.is_world_master():
-                with open(output_eval_file, "w") as writer:
-                    print("***** Eval results *****")
-                    for key in sorted(result.keys()):
-                        print("  %s = %s", key, str(result[key]))
-                        writer.write("%s = %s\n" % (key, str(result[key])))
+        #     output_eval_file = os.path.join(
+        #         training_args.output_dir, "eval_results_lm.txt"
+        #     )
+        #     if trainer.is_world_master():
+        #         with open(output_eval_file, "w") as writer:
+        #             print("***** Eval results *****")
+        #             for key in sorted(result.keys()):
+        #                 print("  %s = %s", key, str(result[key]))
+        #                 writer.write("%s = %s\n" % (key, str(result[key])))
 
-            results.update(result)
+        #     results.update(result)
 
-        del model
-        del trainer
-        del gpt2
-        torch.cuda.empty_cache()
-        elem = os.path.abspath(training_args.output_dir)
-        checkpoint_path = elem
+        # del model
+        # del trainer
+        # del gpt2
+        # torch.cuda.empty_cache()
+        # elem = os.path.abspath(training_args.output_dir)
+        # checkpoint_path = elem
 
-        print("running evaluation on ", checkpoint_path)
+        # print("running evaluation on ", checkpoint_path)
 
-        print("python gen.py webnlg yes valid {} no".format(checkpoint_path))
-        print("python gen.py webnlg yes test {} no".format(checkpoint_path))
-        os.system("python gen.py webnlg yes valid {} no".format(checkpoint_path))
-        os.system("python gen.py webnlg yes test {} no".format(checkpoint_path))
+        # print("python gen.py webnlg yes valid {} no".format(checkpoint_path))
+        # print("python gen.py webnlg yes test {} no".format(checkpoint_path))
+        # os.system("python gen.py webnlg yes valid {} no".format(checkpoint_path))
+        # os.system("python gen.py webnlg yes test {} no".format(checkpoint_path))
+        pass
 
     if args["optimizer"] == "adafactor":
         optimizer = Adafactor(
