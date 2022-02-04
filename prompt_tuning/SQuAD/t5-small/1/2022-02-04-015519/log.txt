@@ -1,5 +1,0 @@
-Initializing soft prompt...
-{'train_runtime': 13.8483, 'train_samples_per_second': 6.253, 'train_steps_per_second': 0.144, 'train_loss': 0.8818017244338989, 'epoch': 0.0}
-:00<?, ?it/s]100%|██████████| 3/3 [00:00<00:00, 13.52it/s]100%|██████████| 3/3 [00:00<00:00, 13.51it/s]
-/opt/conda/lib/python3.9/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
-  warnings.warn('Was asked to gather along dimension 0, but all '
