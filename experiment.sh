@@ -1,11 +1,11 @@
-python run_porompt_tuning.py \
+python -u run_prompt_tuning.py \
     --method prompt_tuning \
-    --model t5-small \
-    --n_tokens 1 \
+    --model t5-base \
+    --n_tokens 50 \
     --mode train \
-    --bz 20 \
-    --epoch 0.001 \
-    --logging 1
+    --bz 7 \
+    --epoch 0.03 \
+    --logging 0
 # more arguments can be added
 
 # python run.py \
