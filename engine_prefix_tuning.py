@@ -1,8 +1,5 @@
 import sys, os
 from datetime import datetime
-from contextlib import redirect_stdout
-import json
-import argparse
 from prepare_webnlg import *
 from transformers import (
     GPT2Tokenizer,
@@ -15,7 +12,6 @@ from transformers import (
 )
 from model_prefix_tuning import PrefixTuning
 from trainer_prefix import Trainer_Prefix
-from transformers.trainer_utils import EvaluationStrategy
 
 
 def setup_logs(args):
@@ -59,11 +55,11 @@ def get_data_model(args):
         model.resize_token_embeddings(len(tokenizer))
         train_dataset = get_dataset(
             tokenizer=tokenizer,
-            file_path="data/webnlg_challenge_2017/train.json",
+            file_path="./data/webnlg_challenge_2017/train.json",
         )
         eval_dataset = get_dataset(
             tokenizer=tokenizer,
-            file_path="data/webnlg_challenge_2017/train.json",
+            file_path="./data/webnlg_challenge_2017/train.json",
         )
         for param in model.base_model.parameters():
             param.requires_grad = False
@@ -97,7 +93,7 @@ def get_training_args(args):
         do_train=True,
         do_eval=True,
         evaluate_during_training=True,
-        evaluation_strategy=EvaluationStrategy.STEPS,
+        evaluation_strategy="steps",
         prediction_loss_only=True,
         per_device_train_batch_size=args["epoch"],
         per_device_eval_batch_size=args["epoch"],
@@ -122,31 +118,47 @@ def get_training_args(args):
 def run(args):
     args["path"] = None
     path = setup_logs(args)
-    model_data_wrapper = get_data_model(args)
-    tokenizer=model_data_wrapper["tokenizer"]
-    data_collator = DataCollatorForData2TextLanguageModeling(
-        tokenizer=tokenizer,
-        mlm=False,
-        mlm_probability=0.15,
-        format_mode="cat",
-    )
     training_args = get_training_args(args)
+    if args["mode"] == "train":
+        model_data_wrapper = get_data_model(args)
+        tokenizer = model_data_wrapper["tokenizer"]
+        data_collator = DataCollatorForData2TextLanguageModeling(
+            tokenizer=tokenizer,
+            mlm=False,
+            mlm_probability=0.15,
+            format_mode="cat",
+        )
+        trainer = Trainer_Prefix(
+            model=model_data_wrapper["model"],
+            tokenizer=tokenizer,
+            model_gpt2=model_data_wrapper["gpt2"],
+            args=training_args,
+            prediction_loss_only=True,
+            train_dataset=model_data_wrapper["train_set"],
+            eval_dataset=model_data_wrapper["eval_set"],
+            data_collator=data_collator,
+            task_mode="webnlg",
+            use_dropout=False,
+        )
 
-    trainer = Trainer_Prefix(
-        model=model_data_wrapper["model"],
-        tokenizer=tokenizer,
-        model_gpt2=model_data_wrapper["gpt2"],
-        args=training_args,
-        prediction_loss_only=True,
-        train_dataset=model_data_wrapper["train_set"],
-        eval_dataset=model_data_wrapper["eval_set"],
-        data_collator=data_collator,
-        task_mode="webnlg",
-        use_dropout=False,
-    )
+        if trainer.is_world_master():
+            tokenizer.save_pretrained(training_args.output_dir)
 
-    if trainer.is_world_master():
-        tokenizer.save_pretrained(training_args.output_dir)
+        trainer.train()
+        trainer.save_model()
 
-    trainer.train()
-    trainer.save_model()
+    if args["mode"] == "test":
+        checkpoint_path = os.path.abspath(training_args.output_dir)
+        print("running evaluation on ", checkpoint_path)
+
+        if args["test_set"] == "webnlg":
+            print("python gen.py webnlg yes valid {} no".format(checkpoint_path))
+            # print("python gen.py webnlg yes test {} no".format(checkpoint_path))
+            os.system("python gen.py webnlg yes valid {} no".format(checkpoint_path))
+            # os.system("python gen.py webnlg yes test {} no".format(checkpoint_path))
+
+        elif args["test_set"] == "dart":
+            print("python gen.py triples yes valid {} no".format(checkpoint_path))
+            # print("python gen.py triples yes test {} no".format(checkpoint_path))
+            os.system("python gen.py triples yes valid {} no".format(checkpoint_path))
+            # os.system("python gen.py triples yes test {} no".format(checkpoint_path))

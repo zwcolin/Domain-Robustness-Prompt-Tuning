@@ -13,6 +13,7 @@ parser.add_argument("--mode", default="train", type=str, help="Mode being used")
 parser.add_argument(
     "--train_set", default="webnlg", type=str, help="Dataset being used"
 )
+parser.add_argument("--test_set", default="webnlg", type=str, help="Dataset being used")
 
 # specific-to-prefix-tuning
 parser.add_argument("--preseqlen", default=5, type=int, help="number of tokens")
