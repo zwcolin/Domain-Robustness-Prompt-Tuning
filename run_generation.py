@@ -32,7 +32,7 @@ from transformers import (
     set_seed,
 )
 import sys, os
-from model import PrefixTuning
+from model_prefix_tuning import PrefixTuning
 
 
 logging.basicConfig(
@@ -452,7 +452,6 @@ def main():
                     model_gpt2=gpt2,
                     optim_prefix=optim_prefix_bool,
                     preseqlen=args.preseqlen,
-                    use_infix=False,
                 )
             model.to(args.device)
 

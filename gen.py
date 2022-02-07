@@ -21,8 +21,10 @@ if __name__ == '__main__':
     app += "--prefix_mode activation "
     app += " --format_mode cat "
 
-    # MODEL_FILE = 'gpt2-large'
-    MODEL_FILE = 'gpt2-medium'
+    if 'gpt2-large' in Token_FILE:
+        MODEL_FILE = 'gpt2-large'
+    if 'gpt2-medium' in Token_FILE:
+        MODEL_FILE = 'gpt2-medium'
 
     COMMANDLINE = "python run_generation.py \
         --model_type=gpt2 \
