@@ -62,6 +62,7 @@ def load(dataset, partition, args):
         subset = args['test_set']
     fp = "data/{}_{}.pt".format(partition, subset)
     if exists(fp):
+        print(fp)
         data = torch.load(fp)
         columns = ["input_ids", "target_ids", "attention_mask", "target_attention_mask"]
         data.set_format(type="torch", columns=columns, format_kwargs=data.format["format_kwargs"])
@@ -79,7 +80,7 @@ def load(dataset, partition, args):
 def get_dataset(input_tokenizer, args):
     global tokenizer
     tokenizer = input_tokenizer
-    dataset = load_dataset("mrqa")
+    dataset = load_dataset("mrqa", cache_dir='data/mrqa')
     train_dataset = load(dataset, 'train', args)
     val_dataset = load(dataset, 'validation', args)
     test_dataset = load(dataset, 'test', args)
