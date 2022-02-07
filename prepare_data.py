@@ -80,7 +80,7 @@ def load(dataset, partition, args):
 def get_dataset(input_tokenizer, args):
     global tokenizer
     tokenizer = input_tokenizer
-    dataset = load_dataset("mrqa", cache_dir='/datasets/home/37/137/ziw029/T5_SQuAD_Prompt_Tuning/data/mrqa')
+    dataset = load_dataset("mrqa", cache_dir='data/mrqa')
     train_dataset = load(dataset, 'train', args)
     val_dataset = load(dataset, 'validation', args)
     test_dataset = load(dataset, 'test', args)
