@@ -116,6 +116,8 @@ def generate_predictions(model, tokenizer, dataset, debug):
     predictions = {}
     length = 10 if debug else len(dataset)
     for i in range(length):
+        if debug:
+            print(f'evaluating example {i} of {length}')
         qid, question, context = dataset['qid'][i], dataset['question'][i], dataset['context'][i]
         input_ids = tokenizer.encode('question: %s  context: %s' % (question, context), 
                                 return_tensors='pt').to(model.device)
