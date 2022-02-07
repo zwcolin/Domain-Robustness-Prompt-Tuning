@@ -18,7 +18,7 @@ LABEL maintainer="UC San Diego ITS/ETS <ets-consult@ucsd.edu>"
 
 # 2) change to root to install packages
 USER root
-RUN pip install torch nltk nlp transformers
+RUN pip install torch nltk nlp transformers datasets
 
 # Override command to disable running jupyter notebook at launch
 # CMD ["/bin/bash"]

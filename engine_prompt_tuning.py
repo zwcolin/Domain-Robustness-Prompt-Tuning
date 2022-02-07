@@ -32,6 +32,7 @@ sys.stdout = Unbuffered(sys.stdout)
 
 def setup_logs(args):
     if args['logging']:
+        print('File logging is enabled')
         timestamp = datetime.now().strftime("%Y-%m-%d-%H%M%S")
         path = "{}/{}/{}/{}/{}".format(args["method"], args["train_set"], args["model"], args["n_tokens"], timestamp)
         isExist = os.path.exists(path)
@@ -90,15 +91,20 @@ def get_optim(model, args):
     }
 
 def get_training_args(args):
+    if args['logging']:
+        args['artifact_dir'] = args['path'] + '/artifact'
+    else:
+        args['artifact_dir'] = './tmp'
     training_args = TrainingArguments(
             remove_unused_columns=False,
             per_device_train_batch_size=args['bz'],  # batch size per device during training
             per_device_eval_batch_size=args['bz'],   # batch size for evaluation
             num_train_epochs=args['epoch'],
-            disable_tqdm=True,
+            disable_tqdm=args['logging'],
             report_to=None,
-            output_dir='./results',          # output directory
-            save_steps=1000000, #TODO: hardcoded for debugging, I don't want to mess up my disk space
+            output_dir=args['artifact_dir'],          # output directory
+            save_strategy='epoch',
+            save_total_limit=1,
 
             logging_dir=args['path'],            # directory for storing logs
             logging_steps=20,
@@ -106,9 +112,10 @@ def get_training_args(args):
         )
     return training_args
 
-def generate_predictions(model, tokenizer, dataset):
+def generate_predictions(model, tokenizer, dataset, debug):
     predictions = {}
-    for i in range(len(dataset)):
+    length = 10 if debug else len(dataset)
+    for i in range(length):
         qid, question, context = dataset['qid'][i], dataset['question'][i], dataset['context'][i]
         input_ids = tokenizer.encode('question: %s  context: %s' % (question, context), 
                                 return_tensors='pt').to(model.device)
@@ -121,18 +128,18 @@ def generate_predictions(model, tokenizer, dataset):
         predictions[qid] = pred
     return predictions
 
-def compute_metrics(wrapper):
+def compute_metrics(wrapper, debug=False):
     model, tokenizer, val_set, test_set = wrapper['model'], wrapper['tokenizer'], wrapper['val_set'], wrapper['test_set']
 
     val_set_gts = dict(zip(val_set['qid'], val_set['answers']))
-    val_set_pred = generate_predictions(model, tokenizer, val_set)
+    val_set_pred = generate_predictions(model, tokenizer, val_set, debug)
     val_set_metric = evaluate(val_set_gts, val_set_pred, True)
-    print(f'val_set: {val_set_metric}')
+    print(f'     val_set: {val_set_metric}')
     
     test_set_gts = dict(zip(test_set['qid'], test_set['answers']))
-    test_set_pred = generate_predictions(model, tokenizer, test_set)
+    test_set_pred = generate_predictions(model, tokenizer, test_set, debug)
     test_set_metric = evaluate(test_set_gts, test_set_pred, True)
-    print(f'test_set: {test_set_metric}')
+    print(f'     test_set: {test_set_metric}')
     
     return val_set_metric, test_set_metric
 
@@ -142,7 +149,6 @@ def save_logs(model, args):
         metainfo_file = os.path.join(args['path'], 'info.json')
         with open(metainfo_file, 'w') as fp:
             json.dump(args, fp)
-        sys.stdout.close()
 
 def run(args):
     args['path'] = None
@@ -161,7 +167,25 @@ def run(args):
             )
 
     trainer.train()
+    save_logs(model_data_wrapper['model'], args)
     # TODO: add evaluation on validation set and the test set
     compute_metrics(model_data_wrapper)
 
-    save_logs(model_data_wrapper['model'], args)
+def test_model(args):
+    # TODO: remove hardcoding directory
+    model = T5PromptTuningLM.from_pretrained(args["model"], 
+                                                     return_dict=False,
+                                                     soft_prompt_path='prompt_tuning/SQuAD/t5-small/1/2022-02-04-221142/soft_prompt.model')
+    tokenizer = T5Tokenizer.from_pretrained(args["model"])
+    train_set, val_set, test_set = get_dataset(tokenizer, args)
+    wrapper = {
+        'model': model,
+        'tokenizer': tokenizer,
+        'train_set': train_set,
+        'val_set': val_set,
+        'test_set': test_set,
+    }
+    compute_metrics(wrapper, True)
+
+
+

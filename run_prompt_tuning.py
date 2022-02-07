@@ -16,7 +16,7 @@ parser.add_argument("--model_dir",default="none",type=str,help="Prompt or prefix
 
 # specific-to-prompt-tuning
 parser.add_argument("--soft_prompt_path", default=None, type=str, help="the path of a tuned soft prompt")
-parser.add_argument("--n_tokens", default=10, type=int, help="number of tokens")
+parser.add_argument("--n_tokens", default=11, type=int, help="number of tokens")
 parser.add_argument("--initialize_from_vocab",default=True,type=bool,help="if the initial prompt is initialized from existing vocabulary",)
 parser.add_argument("--random_range",default=0.5,type=float,help="weight range from a uniform distribution if not initialized from existing vocabulary",)
 
@@ -33,7 +33,10 @@ args = vars(parser.parse_args())
 
 def main(args):
     if args['method'] == 'prompt_tuning':
-        engine_prompt_tuning.run(args)
+        if args['mode'] == 'train':
+            engine_prompt_tuning.run(args)
+        if args['mode'] == 'test':
+            engine_prompt_tuning.test_model(args)
 
 if __name__ == "__main__":
     main(args)
