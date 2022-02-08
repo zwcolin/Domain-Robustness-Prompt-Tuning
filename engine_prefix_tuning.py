@@ -55,11 +55,11 @@ def get_data_model(args):
         model.resize_token_embeddings(len(tokenizer))
         train_dataset = get_dataset(
             tokenizer=tokenizer,
-            file_path="./data/webnlg_challenge_2017/train.json",
+            file_path="./prefix_data/webnlg_challenge_2017/train.json",
         )
         eval_dataset = get_dataset(
             tokenizer=tokenizer,
-            file_path="./data/webnlg_challenge_2017/train.json",
+            file_path="./prefix_data/webnlg_challenge_2017/train.json",
         )
         for param in model.base_model.parameters():
             param.requires_grad = False
@@ -116,6 +116,10 @@ def get_training_args(args):
 
 
 def run(args):
+    if os.path.exists('./prefix_data'):
+        pass
+    else:
+        os.system('git clone https://github.com/wanglec/prefix_data.git') 
     args["path"] = None
     path = setup_logs(args)
     training_args = get_training_args(args)

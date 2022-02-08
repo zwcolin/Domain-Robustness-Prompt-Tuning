@@ -469,17 +469,17 @@ def main():
     if args.task_mode == "webnlg":
         if args.eval_dataset == "valid":
             test_path = (
-                "./data/webnlg_challenge_2017/dev.json"
+                "./prefix_data/webnlg_challenge_2017/dev.json"
             )
         elif args.eval_dataset == "test":
             test_path = (
-                "./data/webnlg_challenge_2017/test.json"
+                "./prefix_data/webnlg_challenge_2017/test.json"
             )
         else:
             assert False, "eval_dataset needs to be [valid, test]"
         prompt_text_dict = read_webnlg_files(test_path, tokenizer)
     elif args.task_mode == 'triples':
-        test_path = "./data/dart/dart-v1.1.1-full-test.json"
+        test_path = "./prefix_data/dart/dart-v1.1.1-full-test.json"
         prompt_text_dict = read_triples_files(test_path, tokenizer)
 
     prompt_text_pair = list(prompt_text_dict.keys())
