@@ -152,10 +152,10 @@ def run(args):
         print("running evaluation on ", checkpoint_path)
 
         if args["test_set"] == "webnlg":
-            print("python gen.py webnlg yes valid {} no".format(checkpoint_path))
-            # print("python gen.py webnlg yes test {} no".format(checkpoint_path))
-            os.system("python gen.py webnlg yes valid {} no".format(checkpoint_path))
-            # os.system("python gen.py webnlg yes test {} no".format(checkpoint_path))
+            # print("python gen.py webnlg yes valid {} no".format(checkpoint_path))
+            print("python gen.py webnlg yes test {} no".format(checkpoint_path))
+            # os.system("python gen.py webnlg yes valid {} no".format(checkpoint_path))
+            os.system("python gen.py webnlg yes test {} no".format(checkpoint_path))
 
         elif args["test_set"] == "dart":
             print("python gen.py triples yes test {} no".format(checkpoint_path))
