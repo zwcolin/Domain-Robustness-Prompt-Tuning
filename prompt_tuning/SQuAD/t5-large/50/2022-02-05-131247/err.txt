@@ -1,0 +1,36 @@
+Reusing dataset mrqa (/datasets/home/37/137/ziw029/T5_SQuAD_Prompt_Tuning/data/mrqa/mrqa/plain_text/1.1.0/1f2cf5ac32b43f864e6f91d384057a16b69b7d13ba9bcaa200ac277c90938d19)
+  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [00:00<00:00,  9.88it/s] 67%|██████▋   | 2/3 [00:00<00:00,  3.93it/s]100%|██████████| 3/3 [00:00<00:00,  6.34it/s]
+Traceback (most recent call last):
+  File "/datasets/home/home-01/37/137/ziw029/T5_SQuAD_Prompt_Tuning/run_prompt_tuning.py", line 39, in <module>
+    main(args)
+  File "/datasets/home/home-01/37/137/ziw029/T5_SQuAD_Prompt_Tuning/run_prompt_tuning.py", line 36, in main
+    engine_prompt_tuning.run(args)
+  File "/datasets/home/home-01/37/137/ziw029/T5_SQuAD_Prompt_Tuning/engine_prompt_tuning.py", line 170, in run
+    compute_metrics(model_data_wrapper)
+  File "/datasets/home/home-01/37/137/ziw029/T5_SQuAD_Prompt_Tuning/engine_prompt_tuning.py", line 138, in compute_metrics
+    test_set_pred = generate_predictions(model, tokenizer, test_set)
+  File "/datasets/home/home-01/37/137/ziw029/T5_SQuAD_Prompt_Tuning/engine_prompt_tuning.py", line 122, in generate_predictions
+    idx = model(input_ids, decoder_input_ids=decoder_input_ids, return_dict=True).logits.argmax(-1)[0][-1]
+  File "/opt/conda/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/datasets/home/home-01/37/137/ziw029/T5_SQuAD_Prompt_Tuning/model_prompt_tuning.py", line 159, in forward
+    return super().forward(
+  File "/home/ziw029/.local/lib/python3.9/site-packages/transformers/models/t5/modeling_t5.py", line 1608, in forward
+    decoder_outputs = self.decoder(
+  File "/opt/conda/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/ziw029/.local/lib/python3.9/site-packages/transformers/models/t5/modeling_t5.py", line 1003, in forward
+    layer_outputs = layer_module(
+  File "/opt/conda/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/ziw029/.local/lib/python3.9/site-packages/transformers/models/t5/modeling_t5.py", line 665, in forward
+    cross_attention_outputs = self.layer[1](
+  File "/opt/conda/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/ziw029/.local/lib/python3.9/site-packages/transformers/models/t5/modeling_t5.py", line 580, in forward
+    attention_output = self.EncDecAttention(
+  File "/opt/conda/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/ziw029/.local/lib/python3.9/site-packages/transformers/models/t5/modeling_t5.py", line 483, in forward
+    scores = torch.matmul(
+RuntimeError: CUDA out of memory. Tried to allocate 2.00 MiB (GPU 0; 10.92 GiB total capacity; 9.89 GiB already allocated; 3.38 MiB free; 9.96 GiB reserved in total by PyTorch)
