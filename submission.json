@@ -1,4 +1,0 @@
-{
-    "dockerhub-id": "zwcolin/180_method5:latest",
-    "build-script": "python run.py test"
-}
