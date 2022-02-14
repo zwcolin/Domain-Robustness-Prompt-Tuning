@@ -1,5 +1,7 @@
 # On Evaluating the Robustness of Language Models with Tuning
 Authors: Colin Wang, Lechuan Wang, Yutong Luo
+
+Website: https://rachelluoyt.github.io/T5_SQuAD_Prompt_Tuning/
 ## Pipeline for DSC 180B (not normally used by us, but for DSC 180B which asserts a certain format)
 Build a container using `zwcolin/180_method5:latest` docker. Clone the repo, then at the root folder, run `python run.py test`. Warning: lots of time may be spent on downloading the data, pretrained model, tokenizer, and preparation. The testing itself may take ~30 minutes (not including downloading and building the dataset) to output evaluation metrics (we've modified the script for you so it just measures the first 10 examples, which may take around 30 seconds to intialize and process). If you do want to see some results, you may want to wait for quite a bit. Alternatively, some existing train/testing logging has been provided inside the the `prompt_tuning` folder. You can take a look at that instead of actually running the code.
 
