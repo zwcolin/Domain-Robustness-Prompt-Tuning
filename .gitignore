@@ -128,5 +128,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# data/
+data/
+prompt_tuning/
+prompt_tuning_domain_sym/
 
