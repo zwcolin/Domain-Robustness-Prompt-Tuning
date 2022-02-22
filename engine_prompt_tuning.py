@@ -34,12 +34,18 @@ def setup_logs(args):
     if args['logging']:
         print('File logging is enabled')
         timestamp = datetime.now().strftime("%Y-%m-%d-%H%M%S")
-        path = "{}/{}/{}/{}/{}".format(args["method"], args["train_set"], args["model"], args["n_tokens"], timestamp)
+        path = "{}/{}/{}/{}/{}".format(args["method"]+'_domain_sym', args["train_set"], args["model"], args["n_tokens"], timestamp)
+        if args['mode'] == 'test':
+            path = args['model_dir']
         isExist = os.path.exists(path)
         if not isExist:
             os.makedirs(path)
-        sys.stderr = open(os.path.join(path, "err.txt"), "w")
-        sys.stdout = open(os.path.join(path, "log.txt"), "w")
+        if args['mode'] == 'train':
+            sys.stderr = open(os.path.join(path, "err.txt"), "w")
+            sys.stdout = open(os.path.join(path, "log.txt"), "w")
+        if args['mode'] == 'test':
+            sys.stderr = open(os.path.join(path, "err_test.txt"), "w")
+            sys.stdout = open(os.path.join(path, "log_test.txt"), "w")
         args['path'] = path
         return path
 
@@ -63,6 +69,8 @@ def get_data_model(args):
             random_range=args["random_range"],
         )
     if args['task'] == 'qa':
+        train_set, val_set, test_set = get_dataset(tokenizer, args)
+    if args['task'] == 't2t':
         train_set, val_set, test_set = get_dataset(tokenizer, args)
 
     return {
@@ -116,7 +124,7 @@ def generate_predictions(model, tokenizer, dataset, debug):
     predictions = {}
     length = 10 if debug else len(dataset)
     for i in range(length):
-        if debug:
+        if False:#debug:
             print(f'evaluating example {i} of {length}')
         qid, question, context = dataset['qid'][i], dataset['question'][i], dataset['context'][i]
         input_ids = tokenizer.encode('question: %s  context: %s' % (question, context), 
@@ -130,18 +138,28 @@ def generate_predictions(model, tokenizer, dataset, debug):
         predictions[qid] = pred
     return predictions
 
-def compute_metrics(wrapper, debug=False):
+def compute_metrics(wrapper, debug=False, test_only=False):
     model, tokenizer, val_set, test_set = wrapper['model'], wrapper['tokenizer'], wrapper['val_set'], wrapper['test_set']
-
-    val_set_gts = dict(zip(val_set['qid'], val_set['answers']))
-    val_set_pred = generate_predictions(model, tokenizer, val_set, debug)
-    val_set_metric = evaluate(val_set_gts, val_set_pred, True)
-    print(f'     val_set: {val_set_metric}')
+    val_set_metric = None
+    if not test_only:
+        subset = val_set['subset'][0]
+        val_set_gts = dict(zip(val_set['qid'], val_set['answers']))
+        val_set_pred = generate_predictions(model, tokenizer, val_set, debug)
+        val_set_metric = evaluate(val_set_gts, val_set_pred, True)
+        print(f'     val_set_{subset}: {val_set_metric}')
     
-    test_set_gts = dict(zip(test_set['qid'], test_set['answers']))
-    test_set_pred = generate_predictions(model, tokenizer, test_set, debug)
-    test_set_metric = evaluate(test_set_gts, test_set_pred, True)
-    print(f'     test_set: {test_set_metric}')
+    if not isinstance(test_set, list):
+        test_set_gts = dict(zip(test_set['qid'], test_set['answers']))
+        test_set_pred = generate_predictions(model, tokenizer, test_set, debug)
+        test_set_metric = evaluate(test_set_gts, test_set_pred, True)
+        print(f'     test_set: {test_set_metric}')
+    else:
+        for s in test_set:
+            subset = s['subset'][0]
+            test_set_gts = dict(zip(s['qid'], s['answers']))
+            test_set_pred = generate_predictions(model, tokenizer, s, debug)
+            test_set_metric = evaluate(test_set_gts, test_set_pred, True)
+            print(f'     test_set_{subset}: {test_set_metric}')
     
     return val_set_metric, test_set_metric
 
@@ -175,9 +193,12 @@ def run(args):
 
 def test_model(args):
     # TODO: remove hardcoding directory
+    setup_logs(args)
+    model_file = args['model_dir'] + '/soft_prompt.model'
+    args['path'] = args['model_dir']
     model = T5PromptTuningLM.from_pretrained(args["model"], 
                                                      return_dict=False,
-                                                     soft_prompt_path='prompt_tuning/SQuAD/t5-small/1/2022-02-04-221142/soft_prompt.model')
+                                                     soft_prompt_path=model_file).cuda()
     tokenizer = T5Tokenizer.from_pretrained(args["model"])
     train_set, val_set, test_set = get_dataset(tokenizer, args)
     wrapper = {
@@ -187,7 +208,7 @@ def test_model(args):
         'val_set': val_set,
         'test_set': test_set,
     }
-    compute_metrics(wrapper, True)
+    compute_metrics(wrapper, True, True)
 
 
 

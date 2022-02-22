@@ -53,17 +53,22 @@ def convert_to_features(example_batch):
 
     return encodings
 
-def load(dataset, partition, args):
+def load(dataset, partition, args, i=0):
     if partition == 'train':
         subset = args['train_set']
     elif partition == 'validation':
         subset = args['val_set']
     elif partition == 'test':
         subset = args['test_set']
+    elif partition == 'test_multi':
+        subset = args['test_sets'][i]
+        if subset in ['BioASQ', 'DROP', 'RelationExtraction', 'DuoRC.ParaphraseRC']:
+            partition = 'test'
+        if subset in ['SQuAD', 'NewsQA', 'SearchQA', 'TriviaQA-web', 'HotpotQA', 'NaturalQuestionsShort']:
+            partition = 'validation'
     fp = "data/{}_{}.pt".format(partition, subset)
     if exists(fp):
-        print(fp)
-        data = torch.load(fp)
+        data = torch.load(fp, map_location=torch.device('cpu'))
         columns = ["input_ids", "target_ids", "attention_mask", "target_attention_mask"]
         data.set_format(type="torch", columns=columns, format_kwargs=data.format["format_kwargs"])
     else:
@@ -71,20 +76,31 @@ def load(dataset, partition, args):
         data = dataset[partition].filter(lambda example: example['subset']==subset)
         data = data.map(add_eos_to_examples)
         data = data.map(convert_to_features, batched=True)
+        
         columns = ["input_ids", "target_ids", "attention_mask", "target_attention_mask"]
         data.set_format(type="torch", columns=columns, format_kwargs=data.format["format_kwargs"])
         torch.save(data, fp)
+    print(fp)
+    if partition == 'train':
+        data = data.shuffle(seed=42).select(range(10000))
+    else:
+        data = data.shuffle(seed=42).select(range(1000))
     return data
 
 
 def get_dataset(input_tokenizer, args):
     global tokenizer
     tokenizer = input_tokenizer
-    dataset = load_dataset("mrqa", cache_dir='/datasets/home/37/137/ziw029/T5_SQuAD_Prompt_Tuning/data/mrqa')
+    dataset = load_dataset("mrqa", cache_dir='data/mrqa')
     train_dataset = load(dataset, 'train', args)
     val_dataset = load(dataset, 'validation', args)
-    test_dataset = load(dataset, 'test', args)
+    print(args['test_sets'])
+    if len(args['test_sets']) == 0:
+        test_dataset = load(dataset, 'test', args)
+    else:
+        test_dataset = [load(dataset, 'test_multi', args, i) for i in range(len(args['test_sets']))] 
     return train_dataset, val_dataset, test_dataset
+
 
 #########################################################################################
 #################### The Above Code Blocks will be for SQuAD & TextbookQA dataset #######

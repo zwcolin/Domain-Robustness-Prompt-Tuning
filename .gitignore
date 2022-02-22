@@ -129,4 +129,5 @@ dmypy.json
 .pyre/
 
 data/
-
+prompt_tuning/
+prompt_tuning_domain_sym

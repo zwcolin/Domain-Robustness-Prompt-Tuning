@@ -12,6 +12,7 @@ parser.add_argument("--mode", default="train", type=str, help="Mode being used")
 parser.add_argument("--train_set", default="SQuAD", type=str, help="Dataset being used")
 parser.add_argument("--val_set", default="SQuAD", type=str, help="Dataset being used")
 parser.add_argument("--test_set", default="DuoRC.ParaphraseRC", type=str, help="Dataset being used")
+parser.add_argument("-tss", "--test_sets", default=[], nargs='+', help="Dataset being used")
 parser.add_argument("--model_dir",default="none",type=str,help="Prompt or prefix being used for testing",)
 
 # specific-to-prompt-tuning
