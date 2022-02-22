@@ -254,10 +254,13 @@ class GPTPromptTuningMixin:
         return inputs_embeds
 
     def _extend_labels(self, labels, ignore_index=-100) -> torch.Tensor:
+        print('123123')
+        # raise Exception()
         if len(list(labels.shape)) == 1:
             labels = labels.unsqueeze(0)
 
         n_batches = labels.shape[0]
+        
         return torch.cat(
             [
                 torch.full((n_batches, self.n_tokens), ignore_index).to(self.device),
@@ -299,22 +302,35 @@ class GPTPromptTuningMixin:
         output_hidden_states=None,
         return_dict=None,
     ):
+        # print('hello1')
         if input_ids is not None:
             inputs_embeds = self._cat_learned_embedding_to_input(input_ids).to(
                 self.device
             )
-
+        print('hello2')
+        # print(labels.shape)
+        # raise Exception()
+        print(labels)
+        # raise Exception()
         if labels is not None:
             labels = self._extend_labels(labels).to(self.device)
-
+        print('hello3')
+        # raise Exception()
         if attention_mask is not None:
             attention_mask = self._extend_attention_mask(attention_mask).to(self.device)
+
+        print(inputs_embeds.shape)
+        print(attention_mask.shape)
+        print(labels.shape)
+        print(output_attentions.shape)
+        # raise Exception()
 
         # Drop most of the args for now
         return super().forward(
             attention_mask=attention_mask,
             inputs_embeds=inputs_embeds,
             labels=labels,
+            output_attentions=output_attentions,
             use_cache=use_cache,
             return_dict=return_dict,
         )

@@ -8,11 +8,13 @@ from transformers import (
     GPT2Tokenizer,
     Trainer,
     TrainingArguments,
+    # DataCollatorForData2TextLanguageModeling
 )
 from model_prompt_tuning import T5PromptTuningLM, GPT2PromptTuningLM
 from utils_prompt_tuning import evaluate
-from prepare_data import get_dataset
-from collator import T2TDataCollator
+from prepare_data import get_dataset as get_dataset_qa
+from prepare_webnlg import get_dataset as get_dataset_t2t
+from collator import T2TDataCollator, DataCollatorForData2TextLanguageModeling
 
 os.environ["WANDB_DISABLED"] = "true"
 
@@ -55,6 +57,7 @@ def get_data_model(args):
         )
     if "gpt" in args["model"]:
         tokenizer = GPT2Tokenizer.from_pretrained(args["model"])
+        tokenizer.add_special_tokens({'pad_token': '[PAD]'})
         model = GPT2PromptTuningLM.from_pretrained(
             args["model"],
             n_tokens=args["n_tokens"],
@@ -62,8 +65,19 @@ def get_data_model(args):
             initialize_from_vocab=args["initialize_from_vocab"],
             random_range=args["random_range"],
         )
+    print(args)
     if args['task'] == 'qa':
-        train_set, val_set, test_set = get_dataset(tokenizer, args)
+        train_set, val_set, test_set = get_dataset_qa(tokenizer, args)
+    if args['task'] == 't2t':
+        train_set = get_dataset_t2t(
+            tokenizer=tokenizer,
+            file_path="./prefix_data/webnlg_challenge_2017/train.json",
+        )
+        val_set = get_dataset_t2t(
+            tokenizer=tokenizer,
+            file_path="./prefix_data/webnlg_challenge_2017/dev.json",
+        )
+        test_set = None
 
     return {
         'model': model,
@@ -158,20 +172,27 @@ def run(args):
     model_data_wrapper = get_data_model(args)
     optim_wrapper = get_optim(model_data_wrapper['model'], args)
     training_args = get_training_args(args)
-
+    if args['task'] == 'qa':
+        data_collator = T2TDataCollator()
+    if args['task'] == 't2t':
+        data_collator = DataCollatorForData2TextLanguageModeling(
+            tokenizer=model_data_wrapper["tokenizer"],
+            mlm=False,
+            mlm_probability=0.15,
+            format_mode="cat",
+        )
     trainer = Trainer(
                 model=model_data_wrapper['model'],
                 args=training_args,
                 train_dataset=model_data_wrapper['train_set'],
                 eval_dataset=model_data_wrapper['val_set'],
-                data_collator=T2TDataCollator(),
+                data_collator=data_collator,
                 optimizers=(optim_wrapper['optim'], optim_wrapper['scheduler']),
             )
-
     trainer.train()
     save_logs(model_data_wrapper['model'], args)
     # TODO: add evaluation on validation set and the test set
-    compute_metrics(model_data_wrapper)
+    # compute_metrics(model_data_wrapper)
 
 def test_model(args):
     # TODO: remove hardcoding directory
