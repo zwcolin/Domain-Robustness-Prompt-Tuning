@@ -407,3 +407,28 @@ Training completed. Do not forget to share your model on huggingface.co/models =
 
 
 Token indices sequence length is longer than the specified maximum sequence length for this model (540 > 512). Running this sequence through the model will result in indexing errors
+File logging is enabled
+Using the `WAND_DISABLED` environment variable is deprecated and will be removed in v5. Use the --report_to flag to control the integrations used for logging result (for instance --report_to none).
+***** Running training *****
+  Num examples = 18025
+  Num Epochs = 3
+  Instantaneous batch size per device = 8
+  Total train batch size (w. parallel, distributed & accumulation) = 16
+  Gradient Accumulation steps = 1
+  Total optimization steps = 3381
+Saving model checkpoint to prompt_tuning/webnlg/gpt2-medium/10/2022-03-03-214002/artifact/checkpoint-1127
+Configuration saved in prompt_tuning/webnlg/gpt2-medium/10/2022-03-03-214002/artifact/checkpoint-1127/config.json
+Model weights saved in prompt_tuning/webnlg/gpt2-medium/10/2022-03-03-214002/artifact/checkpoint-1127/pytorch_model.bin
+Saving model checkpoint to prompt_tuning/webnlg/gpt2-medium/10/2022-03-03-214002/artifact/checkpoint-2254
+Configuration saved in prompt_tuning/webnlg/gpt2-medium/10/2022-03-03-214002/artifact/checkpoint-2254/config.json
+Model weights saved in prompt_tuning/webnlg/gpt2-medium/10/2022-03-03-214002/artifact/checkpoint-2254/pytorch_model.bin
+Deleting older checkpoint [prompt_tuning/webnlg/gpt2-medium/10/2022-03-03-214002/artifact/checkpoint-1127] due to args.save_total_limit
+Saving model checkpoint to prompt_tuning/webnlg/gpt2-medium/10/2022-03-03-214002/artifact/checkpoint-3381
+Configuration saved in prompt_tuning/webnlg/gpt2-medium/10/2022-03-03-214002/artifact/checkpoint-3381/config.json
+Model weights saved in prompt_tuning/webnlg/gpt2-medium/10/2022-03-03-214002/artifact/checkpoint-3381/pytorch_model.bin
+Deleting older checkpoint [prompt_tuning/webnlg/gpt2-medium/10/2022-03-03-214002/artifact/checkpoint-2254] due to args.save_total_limit
+
+
+Training completed. Do not forget to share your model on huggingface.co/models =)
+
+

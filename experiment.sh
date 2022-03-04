@@ -24,14 +24,17 @@
 
 # test prefixtuning with gpt2-medium on bart
 #  python run_prefix_tuning.py --mode test --test_set dart
-export PYTHONPATH=/datasets/home/37/137/ziw029/T5_SQuAD_Prompt_Tuning
+# export PYTHONPATH=/datasets/home/37/137/ziw029/T5_SQuAD_Prompt_Tuning
 python run_prompt_tuning.py \
     --method prompt_tuning \
     --model gpt2-medium \
+    --bz 8 \
+    --epoch 3 \
     --task t2t \
-    --n_tokens 1 \
-    --mode train \
+    --n_tokens 10 \
+    --mode test \
     --train_set webnlg \
+    # --logging 1 &
 
 # 1080
 # small 24

@@ -53,7 +53,7 @@ class DataCollatorForData2TextLanguageModeling:
         # print(examples[0])
         # print(len(examples))
         input_ids, labels, src, tgt, cate = zip(*examples)
-        print(labels)
+        # print(labels)
         # print(len(input_ids), len(labels), len(weights))
         if self.mlm:
             inputs, labels = self.mask_tokens(batch)
@@ -107,10 +107,10 @@ class DataCollatorForData2TextLanguageModeling:
             # src_attn = (src != self.tokenizer.pad_token_id) # src
             input_attn = (batch != self.tokenizer.pad_token_id) # tgt
             
-            print()
-            print()
+            # print()
+            # print()
             # print(batch.shape)
-            print(labels)
+            # print(labels)
             # print(src_attn.shape)
             # print(tgt_attn.shape)
 

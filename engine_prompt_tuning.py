@@ -15,6 +15,7 @@ from utils_prompt_tuning import evaluate
 from prepare_data import get_dataset as get_dataset_qa
 from prepare_webnlg import get_dataset as get_dataset_t2t
 from collator import T2TDataCollator, DataCollatorForData2TextLanguageModeling
+from run_generation import read_webnlg_files, read_triples_files
 
 os.environ["WANDB_DISABLED"] = "true"
 
@@ -57,7 +58,8 @@ def get_data_model(args):
         )
     if "gpt" in args["model"]:
         tokenizer = GPT2Tokenizer.from_pretrained(args["model"])
-        tokenizer.add_special_tokens({'pad_token': '[PAD]'})
+        # tokenizer.add_special_tokens({'pad_token': '[PAD]'})
+        tokenizer.pad_token = tokenizer.eos_token
         model = GPT2PromptTuningLM.from_pretrained(
             args["model"],
             n_tokens=args["n_tokens"],
@@ -65,6 +67,7 @@ def get_data_model(args):
             initialize_from_vocab=args["initialize_from_vocab"],
             random_range=args["random_range"],
         )
+        model.resize_token_embeddings(len(tokenizer))
     print(args)
     if args['task'] == 'qa':
         train_set, val_set, test_set = get_dataset_qa(tokenizer, args)
@@ -166,6 +169,28 @@ def save_logs(model, args):
         with open(metainfo_file, 'w') as fp:
             json.dump(args, fp)
 
+def test_gpt(wrapper, args):
+    model, tokenizer = wrapper['model'], wrapper['tokenizer']
+    val_path = './prefix_data/webnlg_challenge_2017/dev.json'
+    test_path = './prefix_data/dart/dart-v1.1.1-full-test.json'
+    val, test = read_webnlg_files(val_path, tokenizer), read_triples_files(test_path, tokenizer)
+    for prompt_text_dict in [val, test]:
+        prompt_text_pair = list(prompt_text_dict.keys())
+        prompt_text_lst, prompt_rela_lst = zip(*prompt_text_pair)
+        for prompt_idx, prompt_text in enumerate(prompt_text_lst):
+            print(prompt_text)
+            input_ids = tokenizer.encode(prompt_text, 
+                                return_tensors='pt').to(model.device)
+            length = input_ids.shape[-1]
+            for i in range(10):
+                output = model(input_ids)
+                output = output.logits.argmax(-1)[0][-1].unsqueeze(-1).unsqueeze(-1)
+                input_ids = torch.cat([input_ids, output], dim=-1)
+            output_ids = input_ids[:,length:]
+            print(tokenizer.batch_decode(output_ids))
+            print()
+
+
 def run(args):
     args['path'] = None
     path = setup_logs(args)
@@ -191,24 +216,44 @@ def run(args):
             )
     trainer.train()
     save_logs(model_data_wrapper['model'], args)
+    test_gpt(model_data_wrapper, args)
     # TODO: add evaluation on validation set and the test set
     # compute_metrics(model_data_wrapper)
 
 def test_model(args):
     # TODO: remove hardcoding directory
-    model = T5PromptTuningLM.from_pretrained(args["model"], 
-                                                     return_dict=False,
-                                                     soft_prompt_path='prompt_tuning/SQuAD/t5-small/1/2022-02-04-221142/soft_prompt.model')
-    tokenizer = T5Tokenizer.from_pretrained(args["model"])
-    train_set, val_set, test_set = get_dataset(tokenizer, args)
+    # model = T5PromptTuningLM.from_pretrained(args["model"], 
+    #                                                  return_dict=True,
+    #                                                  soft_prompt_path='prompt_tuning/SQuAD/t5-small/1/2022-02-04-221142/soft_prompt.model')
+    # tokenizer = T5Tokenizer.from_pretrained(args["model"])
+    # train_set, val_set, test_set = get_dataset(tokenizer, args)
+    # wrapper = {
+    #     'model': model,
+    #     'tokenizer': tokenizer,
+    #     'train_set': train_set,
+    #     'val_set': val_set,
+    #     'test_set': test_set,
+    # }
+    # compute_metrics(wrapper, True)
+    print(args)
+    device = torch.device("cuda")
+    tokenizer = GPT2Tokenizer.from_pretrained(args["model"])
+    # tokenizer.add_special_tokens({'pad_token': '[PAD]'})
+    tokenizer.pad_token = tokenizer.eos_token
+    model = GPT2PromptTuningLM.from_pretrained(
+            args["model"],
+            return_dict=True,
+            soft_prompt_path='/datasets/home/37/137/ziw029/T5_SQuAD_Prompt_Tuning/prompt_tuning/webnlg/gpt2-medium/10/2022-03-03-214002/soft_prompt.model'
+        )
+    model.resize_token_embeddings(len(tokenizer))
+    model.to(device)
+    # tokenizer.to(device)
     wrapper = {
         'model': model,
         'tokenizer': tokenizer,
-        'train_set': train_set,
-        'val_set': val_set,
-        'test_set': test_set,
     }
-    compute_metrics(wrapper, True)
+    test_gpt(wrapper, args)
+
 
 
 
