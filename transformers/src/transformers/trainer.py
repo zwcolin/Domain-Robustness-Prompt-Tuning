@@ -1423,10 +1423,10 @@ class Trainer:
                 # print(temp_logits.shape)
                 temp_ = (temp_logits.exp() * temp_logits).sum(dim=-1)#.view(-1)
                 entropy_losses.extend(temp_.view(-1).tolist())
-                print(temp_.shape)
+                # print(temp_.shape)
                 label_mask = inputs['labels'] != -100
                 temp_ = temp_[label_mask]
-                print(temp_.shape)
+                # print(temp_.shape)
                 entropy_losses2.extend(temp_.tolist())
 
             if labels is not None:
