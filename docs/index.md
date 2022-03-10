@@ -286,7 +286,7 @@ Table below contains our experimentation results for prompt/prefix tuning on GPT
         <td style="font-weight:bold">0.32</td>
     </tr>
     <tr>
-        <td style="font-weight:bold">Large</td>
+        <td rowspan="5">Large</td>
         <td>1</td>
         <td>0.69</td>
         <td>0.88</td>
