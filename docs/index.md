@@ -255,7 +255,7 @@ Table below contains our experimentation results for prompt/prefix tuning on GPT
         <td>0.25</td>
         <td>28.09</td>
         <td>0.76</td>
-        <td style="font-weight:bold">0.32</td>
+        <td>0.32</td>
     </tr>
     <tr>
         
@@ -283,7 +283,7 @@ Table below contains our experimentation results for prompt/prefix tuning on GPT
         <td>0.26</td>
         <td>20.51</td>
         <td>1.15</td>
-        <td style="font-weight:bold">0.32</td>
+        <td>0.32</td>
     </tr>
     <tr>
         <td rowspan="5">Large</td>
@@ -300,7 +300,6 @@ Table below contains our experimentation results for prompt/prefix tuning on GPT
         <td>0.32</td>
     </tr>
     <tr>
-    style="font-weight:bold"
         <td>5</td>
         <td>32.01</td>
         <td>28.07</td>
@@ -311,7 +310,7 @@ Table below contains our experimentation results for prompt/prefix tuning on GPT
         <td>0.2</td>
         <td>30.35</td>
         <td>0.71</td>
-        <td style="font-weight:bold">0.34</td>
+        <td>0.34</td>
     </tr>
     <tr>
        
@@ -325,7 +324,7 @@ Table below contains our experimentation results for prompt/prefix tuning on GPT
         <td>0.21</td>
         <td>30.23</td>
         <td>0.71</td>
-        <td style="font-weight:bold">0.34</td>
+        <td>0.34</td>
     </tr>
     <tr>
 
