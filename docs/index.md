@@ -55,8 +55,6 @@ Table below contains our experimentation results for prompt/prefix tuning on T5 
     <th></th>
     <th colspan="2">Prompt</th>
     <th colspan="2">Prefix</th>
-    <th colspan="2">Prompt</th>
-    <th colspan="2">Prefix</th>
   </tr>
   <tr>
     <th>Size</th>
@@ -191,34 +189,34 @@ Table below contains our experimentation results for prompt/prefix tuning on T5 
 Table below contains our experimentation results for prompt/prefix tuning on GPT2 model for table-to-text tasks.
 <table>
     <tr>
-        <td>\multicolumn{2}{c|}{Configurations}</td>
-        <td>\multicolumn{4}{c||}{	extbf{In-Domain}}</td>
-        <td>\multicolumn{6}{c}{\textbf{Out-of-Domain}}</td>
+        <th colspan="2">Configuration</th>
+        <th colspan="4">In-Domain</th>
+        <th colspan="6">Out-of-Domain</th>
     </tr>
     <tr>
-        <td></td>
-        <td>\multicolumn{1}{l|}{}</td>
-        <td>\multicolumn{2}{c}{Prompt}</td>
-        <td>\multicolumn{2}{c||}{Prefix}</td>
-        <td>\multicolumn{3}{c}{Prompt}</td>
-        <td>\multicolumn{3}{c}{Prefix}</td>
+        <th></th>
+        <th></th>
+        <th colspan="2">Prompt</th>
+        <th colspan="2">Prefix</th>
+        <th colspan="3">Prompt</th>
+        <th colspan="3">Prefix</th>
     </tr>
     <tr>
-        <td>\multicolumn{1}{c}{Size}</td>
-        <td>\multicolumn{1}{c|}{\# Tkns}</td>
-        <td>\multicolumn{1}{c}{B(S)}</td>
-        <td>\multicolumn{1}{c}{B(U)}</td>
-        <td>\multicolumn{1}{c}{B(S)}</td>
-        <td>\multicolumn{1}{c||}{B(U)}</td>
-        <td>\multicolumn{1}{c}{B}</td>
-        <td>\multicolumn{1}{c}{T}</td>
-        <td>\multicolumn{1}{c}{M}</td>
-        <td>\multicolumn{1}{c}{B}</td>
-        <td>\multicolumn{1}{c}{T}</td>
-        <td>\multicolumn{1}{c}{M}</td>
+        <th>Size</th>
+        <th>#Tkns</th>
+        <th>B(S)</th>
+        <th>B(U)</th>
+        <th>B(S)</th>
+        <th>B(U)</th>
+        <th>B</th>
+        <th>T</th>
+        <th>M</th>
+        <th>B</th>
+        <th>T</th>
+        <th>M</th>
     </tr>
     <tr>
-        <td>Base</td>
+        <td rowspan="5">Base</td>
         <td>1</td>
         <td>0</td>
         <td>0</td>
@@ -232,21 +230,21 @@ Table below contains our experimentation results for prompt/prefix tuning on GPT
         <td>0.26</td>
     </tr>
     <tr>
-        <td></td>
+        
         <td>5</td>
         <td>30.01</td>
         <td>24.16</td>
         <td>62.51</td>
-        <td>\textbf{45.53}</td>
+        <td style="font-weight:bold">45.53</td>
         <td>28.32</td>
         <td>0.66</td>
         <td>0.2</td>
-        <td>\textbf{29.02}</td>
+        <td style="font-weight:bold">29.02</td>
         <td>0.75</td>
-        <td>\textbf{0.32}</td>
+        <td style="font-weight:bold">0.32</td>
     </tr>
     <tr>
-        <td></td>
+       
         <td>10</td>
         <td>31.91</td>
         <td>26.18</td>
@@ -257,14 +255,14 @@ Table below contains our experimentation results for prompt/prefix tuning on GPT
         <td>0.25</td>
         <td>28.09</td>
         <td>0.76</td>
-        <td>\textit{0.32}</td>
+        <td style="font-weight:bold">0.32</td>
     </tr>
     <tr>
-        <td></td>
+        
         <td>20</td>
         <td>37.17</td>
         <td>33.8</td>
-        <td>\textbf{63.25}</td>
+        <td style="font-weight:bold">63.25</td>
         <td>44.9</td>
         <td>27.91</td>
         <td>0.62</td>
@@ -274,21 +272,21 @@ Table below contains our experimentation results for prompt/prefix tuning on GPT
         <td>0.31</td>
     </tr>
     <tr>
-        <td></td>
+        
         <td>50</td>
         <td>38.27</td>
         <td>31.07</td>
         <td>62.6</td>
         <td>44.33</td>
         <td>27</td>
-        <td>\textbf{0.61}</td>
+        <td style="font-weight:bold">0.61</td>
         <td>0.26</td>
         <td>20.51</td>
         <td>1.15</td>
-        <td>\textit{0.32}</td>
+        <td style="font-weight:bold">0.32</td>
     </tr>
     <tr>
-        <td>Large</td>
+        <td rowspan="5">Large</td>
         <td>1</td>
         <td>0.69</td>
         <td>0.88</td>
@@ -302,7 +300,7 @@ Table below contains our experimentation results for prompt/prefix tuning on GPT
         <td>0.32</td>
     </tr>
     <tr>
-        <td></td>
+    ]
         <td>5</td>
         <td>32.01</td>
         <td>28.07</td>
@@ -313,7 +311,7 @@ Table below contains our experimentation results for prompt/prefix tuning on GPT
         <td>0.2</td>
         <td>30.35</td>
         <td>0.71</td>
-        <td>\textit{0.34}</td>
+        <td rowspan="5">0.34</td>
     </tr>
     <tr>
         <td></td>
@@ -321,20 +319,20 @@ Table below contains our experimentation results for prompt/prefix tuning on GPT
         <td>35.86</td>
         <td>32.25</td>
         <td>63.97</td>
-        <td>\textbf{47.27}</td>
+        <td rowspan="5">47.27</td>
         <td>20.67</td>
         <td>0.8</td>
         <td>0.21</td>
         <td>30.23</td>
         <td>0.71</td>
-        <td>\textit{0.34}</td>
+        <td rowspan="5">0.34</td>
     </tr>
     <tr>
         <td></td>
         <td>20</td>
         <td>37.69</td>
         <td>33.57</td>
-        <td>\textbf{64.44}</td>
+        <td rowspan="5">64.44</td>
         <td>46.35</td>
         <td>27.22</td>
         <td>0.67</td>
@@ -353,9 +351,9 @@ Table below contains our experimentation results for prompt/prefix tuning on GPT
         <td>24.61</td>
         <td>0.79</td>
         <td>0.3</td>
-        <td>\textbf{31.68}</td>
-        <td>\textbf{0.65}</td>
-        <td>\textbf{0.34}</td>
+        <td rowspan="5">31.68</td>
+        <td rowspan="5">0.65</td>
+        <td rowspan="5">0.34</td>
     </tr>
 </table>
 
