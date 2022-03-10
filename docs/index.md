@@ -300,7 +300,7 @@ Table below contains our experimentation results for prompt/prefix tuning on GPT
         <td>0.32</td>
     </tr>
     <tr>
-    ]
+    style="font-weight:bold"
         <td>5</td>
         <td>32.01</td>
         <td>28.07</td>
